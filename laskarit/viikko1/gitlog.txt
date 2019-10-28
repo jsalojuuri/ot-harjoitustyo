@@ -1,0 +1,112 @@
+commit 4de377f9c947383fe273482594ea63b89002f563
+Author: Jari Salojuuri <jari.salojuuri@gmail.com>
+Date:   Mon Oct 28 10:32:59 2019 +0200
+
+    muutettu ja poistettu tiedostoja
+
+ tiedostoja/file1  | 1 -
+ tiedostoja/file22 | 0
+ 2 files changed, 1 deletion(-)
+
+commit 24302f8100f1b310f95833353052dc782b8423b2
+Author: Jari Salojuuri <jari.salojuuri@gmail.com>
+Date:   Mon Oct 28 10:31:14 2019 +0200
+
+    muutoksia
+
+ tiedostoja/file1 | 1 +
+ tiedostoja/file3 | 0
+ 2 files changed, 1 insertion(+)
+
+commit 62d5619912bfd3c45f432415f031e6cbc04d60e6
+Author: Jari Salojuuri <jari.salojuuri@gmail.com>
+Date:   Mon Oct 28 10:27:28 2019 +0200
+
+    lisätty tiedostoja kansioon
+
+ file1 | 0
+ file2 | 0
+ file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 78744f1b2b6377493ea3dee8286b291fa59284ff
+Author: Jari Salojuuri <jari.salojuuri@gmail.com>
+Date:   Mon Oct 28 10:26:01 2019 +0200
+
+    muutoksia
+
+ eka.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ea7ab3d9981a1c13be5113c34c32b480326146cd
+Author: Jari Salojuuri <jari.salojuuri@gmail.com>
+Date:   Mon Oct 28 10:22:22 2019 +0200
+
+    uudelleennimetty tiedosto
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 90b3aba17b4640b87992ff081e4218dd27f8edfc
+Author: Jari Salojuuri <jari.salojuuri@gmail.com>
+Date:   Mon Oct 28 10:21:24 2019 +0200
+
+    poistettu toinen.txt
+
+ toinen.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 3f3825696957fb10af31b9e39e93186042ca2a7c
+Author: Jari Salojuuri <jari.salojuuri@gmail.com>
+Date:   Mon Oct 28 10:18:49 2019 +0200
+
+    poistettu ja lisätty tekstiä
+
+ tiedosto.txt | 19 ++++++++++++++-----
+ 1 file changed, 14 insertions(+), 5 deletions(-)
+
+commit 13e19b45692b6c7e518fe604079c13b70409ac34
+Author: Jari Salojuuri <jari.salojuuri@gmail.com>
+Date:   Mon Oct 28 10:17:49 2019 +0200
+
+    lisätty tekstiä tiedostoon
+
+ tiedosto.txt | 22 +++++++++++++++++++++-
+ 1 file changed, 21 insertions(+), 1 deletion(-)
+
+commit 4d40d04c159ce02ee875ed3b906938e6764e582b
+Author: Jari Salojuuri <jari.salojuuri@gmail.com>
+Date:   Mon Oct 28 10:05:25 2019 +0200
+
+    kaikenlaista
+
+ stuff/jotain | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8729c98bc9e54fa9d34d6dc10e1cdcd1c1415e87
+Author: Jari Salojuuri <jari.salojuuri@gmail.com>
+Date:   Mon Oct 28 10:04:23 2019 +0200
+
+    kolmas
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 876856c951a7745224f7820fe879bac55be38641
+Author: Jari Salojuuri <jari.salojuuri@gmail.com>
+Date:   Mon Oct 28 10:01:41 2019 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 8f2057e99fb2d5f767a0ec8ae8a236bd41c40a32
+Author: Jari Salojuuri <jari.salojuuri@gmail.com>
+Date:   Mon Oct 28 09:59:56 2019 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
