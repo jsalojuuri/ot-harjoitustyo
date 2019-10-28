@@ -1,6 +1,6 @@
 # Ohjelmistotekniikka, harjoitustyö
 
-Helsingin Yliopiston kurssin *Ohjelmistotekniikka* harjoitustehtäviä
+Helsingin Yliopiston kurssin *Ohjelmistotekniikka* harjoitustehtäviä.
 
 ## Tehtävät
 
