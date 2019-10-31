@@ -2,7 +2,7 @@
 
 Helsingin Yliopiston kurssin *Ohjelmistotekniikka* laskuharjoituksia ja ohjelmointiharjoitustyö, jonka aiheena kahden pelaajan ristinolla vapaasti valittavan kokoisella pelilaudalla. 
 
-## Ohjelmointiharjoitustyö
+## Ohjelmointiharjoitustyö - Tic-tac-toe
 
 * [Työaikakirjanpito](/dokumentointi/tuntikirjanpito.md)
 * [Vaatimusmäärittely](/dokumentointi/vaatimusmaarittely.md)
