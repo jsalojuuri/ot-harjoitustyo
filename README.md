@@ -25,5 +25,7 @@ Helsingin Yliopiston kurssin *Ohjelmistotekniikka* laskuharjoituksia ja ohjelmoi
 ### Viikko 3
 
 [Monopoli](/laskarit/viikko3/Monopoli)
+
 [Moottori](/laskarit/viikko3/Moottori)
+
 [HKL](/laskarit/viikko3/HKL)
