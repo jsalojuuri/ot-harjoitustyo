@@ -24,9 +24,9 @@ public class Main {
         ResultSet resultSet = statement.executeQuery("SELECT 1");
 
         if (resultSet.next()) {
-            System.out.println("Hei tietokantamaailma!");
+            System.out.println("Connected to database");
         } else {
-            System.out.println("Yhteyden muodostaminen epäonnistui.");
+            System.out.println("Connection to database failed");
         }
         
         
