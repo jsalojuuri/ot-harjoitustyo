@@ -21,3 +21,9 @@ Helsingin Yliopiston kurssin *Ohjelmistotekniikka* laskuharjoituksia ja ohjelmoi
 [Unicafe](/laskarit/viikko2/Unicafe)
 
 [Unicafe-tehtävän testikattavuusraportti](/laskarit/viikko2/unicafe_testikattavuus.png)
+
+### Viikko 3
+
+[Monopoli](/laskarit/viikko3/Monopoli)
+[Moottori](/laskarit/viikko3/Moottori)
+[HKL](/laskarit/viikko3/HKL)
