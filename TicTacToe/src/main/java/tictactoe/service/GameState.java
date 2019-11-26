@@ -6,11 +6,15 @@ package tictactoe.service;
  */
 public class GameState {
     
+    private String playerX;
+    private String playerO;    
     private final int boardWidth;
     private boolean turnX;
     private String [][] gameBoard;
     
     public GameState(int boardWidth) {
+        this.playerX = "Player X";
+        this.playerO = "Player O";
         this.boardWidth = boardWidth;
         turnX = true;
         gameBoard = new String[boardWidth][boardWidth];
@@ -21,6 +25,22 @@ public class GameState {
         } 
     }
 
+    public String getPlayerX() {
+        return playerX;
+    }
+
+    public void setPlayerX(String playerX) {
+        this.playerX = playerX;
+    }
+
+    public String getPlayerO() {
+        return playerO;
+    }
+
+    public void setPlayerO(String playerO) {
+        this.playerO = playerO;
+    }
+    
     public boolean isX(int i, int j) {
         if (gameBoard[i][j].equals("X")) {
             return true;

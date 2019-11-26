@@ -114,4 +114,20 @@ public class GameService {
         return players;
     }
     
+    public void setPlayerX(String playerX) {
+        gameState.setPlayerX(playerX);
+    }
+    
+    public void setPlayerO(String playerO) {
+        gameState.setPlayerX(playerO);
+    }
+    
+    public String getPlayerX() {
+        return gameState.getPlayerX();
+    }
+    
+    public String getPlayerO() {
+        return gameState.getPlayerO();
+    }
+    
 }

@@ -32,7 +32,8 @@ public class TicTacToeApp extends Application {
     private GameService gameService;
     private BorderPane appScreen;
     private VBox startPane;
-    private VBox startInputPane;
+    private HBox startInputPane1;
+    private HBox startInputPane2;
     private VBox newPlayerPane;
     private GridPane gameBoard;
     
@@ -42,6 +43,8 @@ public class TicTacToeApp extends Application {
 
     private Label startLabel;
     private Label gameLabel;
+    private String playerXName;
+    private String playerOName;
     
     private Font font;
     
@@ -56,8 +59,9 @@ public class TicTacToeApp extends Application {
         this.gameService = new GameService(20, playerDao);
         this.appScreen = new BorderPane();  
         this.gameBoard = new GridPane();
-        this.startPane = new VBox(10);
-        this.startInputPane = new VBox(10);
+        this.startPane = new VBox(30);
+        this.startInputPane1 = new HBox(10);
+        this.startInputPane2 = new HBox(10);
         this.newPlayerPane = new VBox(10);
         this.font = new Font("Arial", 30);
         
@@ -65,18 +69,55 @@ public class TicTacToeApp extends Application {
         gameLabel.setFont(font);
         this.startLabel = new Label("Tic-Tac-Toe");
         startLabel.setFont(font);
+        this.playerXName = "Player X";
+        this.playerOName = "Player O";
+        
     }
     
     @Override
     public void start(Stage primaryStage) {
 
-        // Start inputpane: welcome text & inputs
+        
         Text startText = new Text("PREGAME SETUP");
+        
+        // Start inputpanes: player inputs
         Label playerXLabel = new Label("Player X");
         Label playerOLabel = new Label("Player O");
-        ComboBox playerXBox = setupPlayerBox();
-        ComboBox playerOBox = setupPlayerBox();  
-        startInputPane.getChildren().addAll(startText, playerXLabel, playerXBox, playerOLabel, playerOBox);
+        TextField playerXInput = new TextField();
+        TextField playerOInput = new TextField();
+        Label playerXMessage = new Label();
+        Label playerOMessage = new Label();
+        Button setPlayerXButton = new Button("Set player X");
+        Button setPlayerOButton = new Button("Set player O");
+        
+        setPlayerXButton.setOnAction(e->{
+            String playerX = playerXInput.getText();
+            if (gameService.login(playerX)) {
+                playerXName = playerX;
+                playerXMessage.setText(playerX + " set as Player X");
+                playerXMessage.setTextFill(Color.GREEN);
+            } else {
+                playerXMessage.setText(playerX + " does not exist");
+                playerXMessage.setTextFill(Color.RED);
+            }  
+        }); 
+        
+        setPlayerOButton.setOnAction(e->{
+            String playerO = playerOInput.getText();
+            if (gameService.login(playerO)) {
+                playerXName = playerO;
+                playerOMessage.setText(playerO + " set as Player O");
+                playerOMessage.setTextFill(Color.GREEN);
+            } else {
+                playerOMessage.setText(playerO + " does not exist");
+                playerOMessage.setTextFill(Color.RED);
+            }  
+        });         
+        
+        
+        
+        startInputPane1.getChildren().addAll(playerXLabel, playerXInput, setPlayerXButton, playerXMessage);
+        startInputPane2.getChildren().addAll(playerOLabel, playerOInput, setPlayerOButton, playerOMessage);
         
         // Start pane: infomessage & buttons
         Label infoMessage = new Label();
@@ -92,8 +133,8 @@ public class TicTacToeApp extends Application {
         });
         
         // Start scene
-        startPane.getChildren().addAll(infoMessage, startInputPane, startGameButton, createPlayerButton);
-        startScene = new Scene(startPane, 250, 250);
+        startPane.getChildren().addAll(infoMessage, startText, startInputPane1, startInputPane2, startGameButton, createPlayerButton);
+        startScene = new Scene(startPane, 600, 400);
         
         
         //New playername pane: input
@@ -119,7 +160,7 @@ public class TicTacToeApp extends Application {
                 playerCreationMessage.setTextFill(Color.RED);              
             } else if ( gameService.createPlayer(playerName) ){
                 playerCreationMessage.setText("");                
-                infoMessage.setText("new player created");
+                infoMessage.setText("new player " + playerName + " created");
                 infoMessage.setTextFill(Color.GREEN);
                 primaryStage.setScene(startScene);      
             } else {
@@ -131,7 +172,7 @@ public class TicTacToeApp extends Application {
         
         newPlayerPane.getChildren().addAll(playerCreationMessage, newPlayerNamePane, createNewPlayerButton); 
        
-        newPlayerScene = new Scene(newPlayerPane, 300, 250);
+        newPlayerScene = new Scene(newPlayerPane, 600, 400);
         
         
         // Game scene
@@ -139,6 +180,8 @@ public class TicTacToeApp extends Application {
         appScreen.setCenter(gameBoard);
         gameScene = new Scene(appScreen, 1000, 1000);
         setGameBoard(gameService.getGameBoard());
+        gameService.setPlayerX(playerXName);
+        gameService.setPlayerX(playerXName);
 
         //primary stage
         primaryStage.setTitle("Tic-Tac-Toe");
@@ -146,7 +189,7 @@ public class TicTacToeApp extends Application {
         primaryStage.show();
         
     }
-    
+    /*
     public ComboBox setupPlayerBox() {
         ComboBox box = new ComboBox();
         List<Player> players = new ArrayList<>();
@@ -156,6 +199,7 @@ public class TicTacToeApp extends Application {
         }
         return box;
     }
+    */
     
     public void setGameBoard(String[][] gameBoard) {
         for (int i = 0; i < gameBoard.length; i++) {
@@ -177,7 +221,11 @@ public class TicTacToeApp extends Application {
     public void checkStatus(String player, String opponent) {
         
         if (gameService.checkStatus().equals(player)) {
-            gameLabel.setText("PLAYER " + player + " WON!");
+            if (player.equals("X")) {
+                gameLabel.setText(gameService.getPlayerX() + " WON!");
+            } else {
+                gameLabel.setText(gameService.getPlayerO() + " WON!");
+            }
             gameBoard.setDisable(true);
         } else {
             gameLabel.setText("Player " + opponent + " , please make your move ");
