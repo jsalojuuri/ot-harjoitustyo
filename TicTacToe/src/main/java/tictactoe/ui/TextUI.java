@@ -6,17 +6,21 @@
 package tictactoe.ui;
 
 import java.util.Scanner;
+import tictactoe.service.GameService;
 
 /**
  *
  * @author salojuur
  */
+
 public class TextUI implements UI {
     
-    private Scanner scanner;
+    GameService gameService;
+    Scanner scanner;
     
-    public TextUI(Scanner scanner) {
+    public TextUI(Scanner scanner, GameService gameService) {
         this.scanner = scanner;
+        this.gameService = gameService;
     }
     
     @Override
@@ -32,20 +36,36 @@ public class TextUI implements UI {
             System.out.print("Options: \n[1] Start new game \n[2] Quit \nYour choice? ");
             String option = scanner.nextLine();
             
-            if (option.equals("2")) {
-                break;
+            if (option.equals("1")) {
+                System.out.print("Set game board width (as squares): ");
+                int width = scanner.nextInt();
+                
+                /*
+                System.out.print("Who's playing? ");
+                player1 = scanner.nextLine();
+                try {
+                    gameService.createPlayer(player1);
+                    if (gameService.createPlayer(player1)) {
+                        System.out.println("Welcome aboard " + player1 + "!");
+                    } else {
+                        System.out.println("Welcome back " +player1 + "!");
+                    }
+                    */
+                } catch (Exception e) {
+                    System.out.println("Something went wrong!");
+                }
+  
             }
             
-            System.out.print("Who's playing? ");
-            player1 = scanner.nextLine();
-            break;
-        }
-        
-        if (player1.equals("")) {
-            System.out.println("Good bye!");
-        } else {
-            System.out.println("Thanks for playing " + player1 + "!");
-
+            if (option.equals("2")) {
+                if (player1.equals("")) {
+                    System.out.println("Good bye!");
+                    break;
+                } else {
+                    System.out.println("Thanks for playing " + player1 + "!");
+                    break;
+                }
+            }
         }
     }
 }
