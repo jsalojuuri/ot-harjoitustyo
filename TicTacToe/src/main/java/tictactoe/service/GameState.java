@@ -69,47 +69,61 @@ public class GameState {
         this.gameBoard = gameBoard;
     }
     
-    public String checkGameStatus() {
-
-        int rowX = 0;
-        int colX = 0;
-        int rowO = 0;
-        int colO = 0;
-        
+    
+    public String checkCols() {
+        String previous = "";
+        String current = "";
+        int count = 0;
         for (int i = 0; i < gameBoard.length; i++) {
             for (int j = 0; j < gameBoard[0].length; j++) {
+ 
+                previous = current;
+                current = gameBoard[i][j];
                 
-                // check cols
-                if (gameBoard[i][j].equals("X")) {
-                    rowO = 0;
-                    rowX++;
-                } 
-                if (gameBoard[i][j].equals("O")) {
-                    rowX = 0;
-                    rowO++;
+                if (!current.equals(previous)) {
+                    count = 1;
+                } else {
+                    count++;
                 }
                 
-                // check rows
-                if (gameBoard[j][i].equals("X")) {
-                    colO = 0;
-                    colX++;
-                } 
-                if (gameBoard[j][i].equals("O")) {
-                    colX = 0;
-                    colO++;
+                if (count == 5 && !current.equals("")) {
+                    return current;
                 }
-                
-                
-                if (rowX == 5 || colX == 5) {
-                    return "X";
-                }
-                if (rowO == 5 || colO == 5) {
-                    return "O";
-                }        
             }
-        } 
-        return "Winner not found yet!";
+            previous = "";
+            current = "";
+            count = 0;
+        }
+        return "";
     }
+    
+    public String checkRows() {
+        String previous = "";
+        String current = "";
+        int count = 0;
+        for (int i = 0; i < gameBoard.length; i++) {
+            for (int j = 0; j < gameBoard[0].length; j++) {
+ 
+                previous = current;
+                current = gameBoard[j][i];
+                
+                if (!current.equals(previous)) {
+                    count = 1;
+                } else {
+                    count++;
+                }
+                
+                if (count == 5 && !current.equals("")) {
+                    return current;
+                }
+            }
+            previous = "";
+            current = "";
+            count = 0;
+        }
+        return "";
+    }
+
     
     
 }

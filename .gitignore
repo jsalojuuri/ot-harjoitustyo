@@ -8,3 +8,4 @@
 /TicTacToe/*.db
 /laskarit/viikko2/Maksukortti/dist/
 .vscode
+/TicTacToe/users.txt

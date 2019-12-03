@@ -85,7 +85,12 @@ public class GameService {
     }
     
     public String checkStatus() {
-        return gameState.checkGameStatus();
+        String colCheck = gameState.checkCols();
+        if (!colCheck.equals("")) {
+            return colCheck;
+        } else {
+            return gameState.checkRows();
+        }
     }
     
     public boolean login(String playerName) {

@@ -65,12 +65,12 @@ public class TicTacToeApp extends Application {
         this.newPlayerPane = new VBox(10);
         this.font = new Font("Arial", 30);
         
-        this.gameLabel = new Label("Player X, please make your move");
+        this.gameLabel = new Label("");
         gameLabel.setFont(font);
         this.startLabel = new Label("Tic-Tac-Toe");
         startLabel.setFont(font);
-        this.playerXName = "Player X";
-        this.playerOName = "Player O";
+        this.playerXName = "X";
+        this.playerOName = "O";
         
     }
     
@@ -93,7 +93,8 @@ public class TicTacToeApp extends Application {
         setPlayerXButton.setOnAction(e->{
             String playerX = playerXInput.getText();
             if (gameService.login(playerX)) {
-                playerXName = playerX;
+                this.playerXName = playerX;
+                this.gameLabel.setText(playerX + ", please make your move");
                 playerXMessage.setText(playerX + " set as Player X");
                 playerXMessage.setTextFill(Color.GREEN);
             } else {
@@ -105,7 +106,7 @@ public class TicTacToeApp extends Application {
         setPlayerOButton.setOnAction(e->{
             String playerO = playerOInput.getText();
             if (gameService.login(playerO)) {
-                playerXName = playerO;
+                this.playerOName = playerO;
                 playerOMessage.setText(playerO + " set as Player O");
                 playerOMessage.setTextFill(Color.GREEN);
             } else {
@@ -180,8 +181,6 @@ public class TicTacToeApp extends Application {
         appScreen.setCenter(gameBoard);
         gameScene = new Scene(appScreen, 1000, 1000);
         setGameBoard(gameService.getGameBoard());
-        gameService.setPlayerX(playerXName);
-        gameService.setPlayerX(playerXName);
 
         //primary stage
         primaryStage.setTitle("Tic-Tac-Toe");
@@ -189,17 +188,6 @@ public class TicTacToeApp extends Application {
         primaryStage.show();
         
     }
-    /*
-    public ComboBox setupPlayerBox() {
-        ComboBox box = new ComboBox();
-        List<Player> players = new ArrayList<>();
-        players = gameService.getPlayers();
-        for (Player player: players) {
-            box.getItems().add(player.getName());
-        }
-        return box;
-    }
-    */
     
     public void setGameBoard(String[][] gameBoard) {
         for (int i = 0; i < gameBoard.length; i++) {
@@ -222,13 +210,18 @@ public class TicTacToeApp extends Application {
         
         if (gameService.checkStatus().equals(player)) {
             if (player.equals("X")) {
-                gameLabel.setText(gameService.getPlayerX() + " WON!");
+                gameLabel.setText(this.playerXName + " WON!");
             } else {
-                gameLabel.setText(gameService.getPlayerO() + " WON!");
+                gameLabel.setText(this.playerOName + " WON!");
             }
             gameBoard.setDisable(true);
         } else {
-            gameLabel.setText("Player " + opponent + " , please make your move ");
+            if (opponent.equals("X")) {
+                gameLabel.setText(this.playerXName + ", please make your move ");
+            } else {
+                gameLabel.setText(this.playerOName + ", please make your move ");
+            }
+            
         } 
     }
     

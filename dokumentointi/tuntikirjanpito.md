@@ -9,3 +9,4 @@
 | 12.11.| 1    | Viikon 3 palautuskriteerien tarkistus, ohjelman koodausta |
 | 18.11. | 1 | Ohjelman rakenteen uudelleen suunnittelua, koodausta |
 | 26.11. | 7 | Ohjelman koodausta ja refaktorointia |
+| 3.12.  | 3 | Ohejlman koodausta |
