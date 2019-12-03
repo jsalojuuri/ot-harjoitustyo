@@ -1,3 +1,3 @@
 # Arkkitehtuuri (alustava)
 
-![Alustava rakenne luokkakaaviona](/kuvat/tictactoe.png)
+[Alustava rakenne luokkakaaviona](/kuvat/tictactoe.png)
