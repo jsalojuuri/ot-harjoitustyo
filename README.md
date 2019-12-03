@@ -7,7 +7,7 @@ Helsingin Yliopiston kurssin *Ohjelmistotekniikka* laskuharjoituksia ja ohjelmoi
 * [Työaikakirjanpito](/dokumentointi/tuntikirjanpito.md)
 * [Vaatimusmäärittely](/dokumentointi/vaatimusmaarittely.md)
 * [Käyttöohje](/dokumentointi/kayttoohje.md)
-* [Alustava rakenne luokkakaaviona](/dokumentointi/kuvat/tictactoe.png)
+* [Arkkitehtuuri](/dokumentointi/arkkitehtuuri.md)
 
 ## Laskuharjoitukset
 
