@@ -1,7 +1,5 @@
 package tictactoe.main;
 
-import tictactoe.ui.*;
-
 /**
  *
  * @author salojuur
@@ -9,9 +7,6 @@ import tictactoe.ui.*;
    
 public class Main {
     public static void main(String[] args) {
-        
-        
-        
         TicTacToeApp.main(args);
     }
 }
