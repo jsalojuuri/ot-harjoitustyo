@@ -6,6 +6,7 @@ Helsingin Yliopiston kurssin *Ohjelmistotekniikka* laskuharjoituksia ja ohjelmoi
 
 * [Työaikakirjanpito](/dokumentointi/tuntikirjanpito.md)
 * [Vaatimusmäärittely](/dokumentointi/vaatimusmaarittely.md)
+* [Käyttöohje](/dokumentointi/kayttoohje.md)
 
 ## Laskuharjoitukset
 
