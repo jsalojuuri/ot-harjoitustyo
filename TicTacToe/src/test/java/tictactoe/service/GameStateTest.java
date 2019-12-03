@@ -15,8 +15,7 @@ public class GameStateTest {
     
     @Before
     public void setUp() throws Exception {
-        gameState = new GameState(10);
-        
+        gameState = new GameState(10);  
     }
     
     @Test
@@ -36,5 +35,32 @@ public class GameStateTest {
     public void playerTurnIsCorrect() {
         gameState.setTurnX(false);
         assertEquals(false,gameState.isTurnX());
+    }
+    
+    @Test
+    public void gameBoardExistsAndGameSqauresAreSetCorrect() {
+        assertNotNull(gameState.getGameBoard());
+        gameState.setGameSquare(0, 0, "X");
+        assertEquals("X", gameState.getGameBoard()[0][0]);
+        assertEquals(true, gameState.isX(0, 0));
+        gameState.setGameSquare(0, 0, "O");
+        assertEquals(false, gameState.isX(0, 0));
+    }
+    
+    @Test
+    public void gameStatusCheckWorksAsPlanned() {
+        assertEquals("", gameState.checkGameStatus());
+        gameState.setGameSquare(0, 0, "X");
+        gameState.setGameSquare(0, 1, "X");
+        gameState.setGameSquare(0, 2, "X");
+        gameState.setGameSquare(0, 3, "X");
+        gameState.setGameSquare(0, 4, "X");
+        assertEquals("X", gameState.checkGameStatus());
+        gameState.setGameSquare(0, 0, "O");
+        gameState.setGameSquare(1, 0, "O");
+        gameState.setGameSquare(2, 0, "O");
+        gameState.setGameSquare(3, 0, "O");
+        gameState.setGameSquare(4, 0, "O");
+        assertEquals("O", gameState.checkGameStatus());
     }
 }

@@ -63,11 +63,6 @@ public class GameService {
         return gameState.getGameBoard();
     }
     
-    /** Set game board */
-    public void setGameBoard(String[][] gameBoard) {
-        gameState.setGameBoard(gameBoard);
-    }
-    
     public void setGameSquare(int i, int j, String chip) {
         gameState.setGameSquare(i, j, chip);
     }

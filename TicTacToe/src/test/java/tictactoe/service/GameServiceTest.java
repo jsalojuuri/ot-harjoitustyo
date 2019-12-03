@@ -3,6 +3,7 @@ package tictactoe.service;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.Properties;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,6 +34,23 @@ public class GameServiceTest {
     @Test
     public void constructorWorksIfProperUserFileIsGiven() {
         assertNotNull(gameService);
+    }
+    
+    @Test
+    public void gameBoardIsInitalizedRight() {
+        gameService.initGameBoard(25);
+        assertEquals(25, gameService.getGameBoard().length);
+    }
+    
+    @Test
+    public void gameSquareIsSetCorrect() {
+        gameService.setGameSquare(0, 0, "X");
+        assertEquals("X", gameService.getGameBoard()[0][0]);
+    }
+    
+    @Test
+    public void playerTurnGetsChangedRight() {
+        assertEquals(true, gameService.isTurnX());
     }
     
 }

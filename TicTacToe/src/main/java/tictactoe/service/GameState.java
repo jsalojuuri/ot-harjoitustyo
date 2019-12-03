@@ -64,7 +64,8 @@ public class GameState {
     public void setGameSquare(int i, int j, String str) {
         this.gameBoard[i][j] = str;
     }
-
+    
+    
     public void setGameBoard(String[][] gameBoard) {
         this.gameBoard = gameBoard;
     }
