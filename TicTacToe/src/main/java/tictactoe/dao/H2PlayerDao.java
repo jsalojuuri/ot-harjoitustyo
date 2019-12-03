@@ -18,7 +18,7 @@ public class H2PlayerDao implements Dao<Player, Integer> {
     
     @Override
     public Player read(Integer key) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:h2:/tictactoe","sa","");
+        Connection conn = DriverManager.getConnection("jdbc:h2:/tictactoe", "sa", "");
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Player WHERE id = ?");
         stmt.setInt(1, key);
 
@@ -41,7 +41,7 @@ public class H2PlayerDao implements Dao<Player, Integer> {
     @Override
     public void create(Player player) throws SQLException {
         
-        Connection conn = DriverManager.getConnection("jdbc:h2:/tictactoe","sa","");
+        Connection conn = DriverManager.getConnection("jdbc:h2:/tictactoe", "sa", "");
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO Player (nimi) VALUES (?)");
         stmt.setString(1, player.getName());
         
@@ -59,7 +59,7 @@ public class H2PlayerDao implements Dao<Player, Integer> {
     
     @Override
     public void delete(Integer key) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:h2:/tictactoe","sa","");
+        Connection conn = DriverManager.getConnection("jdbc:h2:/tictactoe", "sa", "");
         PreparedStatement stmt = conn.prepareStatement("DELETE FROM Player WHERE id = ?");
         
         stmt.setInt(1, key);
@@ -71,7 +71,7 @@ public class H2PlayerDao implements Dao<Player, Integer> {
     
     @Override
     public List<Player> list() throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:h2:tictactoe","sa","");
+        Connection conn = DriverManager.getConnection("jdbc:h2:tictactoe", "sa", "");
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Player");
         ResultSet rs = stmt.executeQuery();
         boolean hasOne = rs.next();

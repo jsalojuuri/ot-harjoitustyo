@@ -70,22 +70,24 @@ public class GameState {
     }
     
     
-    public String checkCols() {
+    public String checkGameStatus() {
         String previous = "";
         String current = "";
         int count = 0;
+        
+        return checkCols(previous, current, count);  
+    }
+    
+    public String checkCols(String previous, String current, int count) {
         for (int i = 0; i < gameBoard.length; i++) {
             for (int j = 0; j < gameBoard[0].length; j++) {
- 
                 previous = current;
                 current = gameBoard[i][j];
-                
                 if (!current.equals(previous)) {
                     count = 1;
                 } else {
                     count++;
-                }
-                
+                }      
                 if (count == 5 && !current.equals("")) {
                     return current;
                 }
@@ -94,25 +96,19 @@ public class GameState {
             current = "";
             count = 0;
         }
-        return "";
+        return checkRows(previous, current, count);
     }
     
-    public String checkRows() {
-        String previous = "";
-        String current = "";
-        int count = 0;
+    public String checkRows(String previous, String current, int count) {
         for (int i = 0; i < gameBoard.length; i++) {
             for (int j = 0; j < gameBoard[0].length; j++) {
- 
                 previous = current;
                 current = gameBoard[j][i];
-                
                 if (!current.equals(previous)) {
                     count = 1;
                 } else {
                     count++;
                 }
-                
                 if (count == 5 && !current.equals("")) {
                     return current;
                 }
@@ -122,8 +118,5 @@ public class GameState {
             count = 0;
         }
         return "";
-    }
-
-    
-    
+    } 
 }

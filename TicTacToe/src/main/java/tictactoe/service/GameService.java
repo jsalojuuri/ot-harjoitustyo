@@ -85,12 +85,7 @@ public class GameService {
     }
     
     public String checkStatus() {
-        String colCheck = gameState.checkCols();
-        if (!colCheck.equals("")) {
-            return colCheck;
-        } else {
-            return gameState.checkRows();
-        }
+        return gameState.checkGameStatus();
     }
     
     public boolean login(String playerName) {
@@ -102,7 +97,7 @@ public class GameService {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Exception: " +e);
+            System.out.println("Exception: " + e);
         }
         return false;
     }
