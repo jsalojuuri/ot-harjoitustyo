@@ -51,6 +51,29 @@ public class GameServiceTest {
     @Test
     public void playerTurnGetsChangedRight() {
         assertEquals(true, gameService.isTurnX());
+        gameService.changeTurn();
+        assertEquals(false, gameService.isTurnX());
+    }
+    
+    @Test
+    public void gameStatusIsCorrect() {
+        assertEquals("", gameService.checkStatus());
+        gameService.setGameSquare(0, 0, "X");
+        gameService.setGameSquare(0, 1, "X");
+        gameService.setGameSquare(0, 2, "X");
+        gameService.setGameSquare(0, 3, "X");
+        gameService.setGameSquare(0, 4, "X");
+        assertEquals("X", gameService.checkStatus());
+    }
+    
+    @Test
+    public void getAndSetPlayers() {
+        assertEquals("Player X", gameService.getPlayerX());
+        assertEquals("Player O", gameService.getPlayerO());
+        gameService.setPlayerX("X");        
+        assertEquals("X", gameService.getPlayerX());
+        gameService.setPlayerO("O");        
+        assertEquals("O", gameService.getPlayerO());
     }
     
 }
