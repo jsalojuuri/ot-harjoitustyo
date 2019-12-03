@@ -10,3 +10,5 @@
 | 18.11. | 1 | Ohjelman rakenteen uudelleen suunnittelua, koodausta |
 | 26.11. | 7 | Ohjelman koodausta ja refaktorointia |
 | 3.12.  | 6 | Ohejlman koodausta, lisätty checkstyle, parannettu testikattavuutta, lisätty käyttöohje |
+
+Yhteensä: 23 tuntia
