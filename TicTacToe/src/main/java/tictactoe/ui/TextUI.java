@@ -40,7 +40,7 @@ public class TextUI implements UI {
                 System.out.print("Set game board width (as squares): ");
                 int width = scanner.nextInt();
                 
-                /*
+                
                 System.out.print("Who's playing? ");
                 player1 = scanner.nextLine();
                 try {
@@ -50,7 +50,7 @@ public class TextUI implements UI {
                     } else {
                         System.out.println("Welcome back " +player1 + "!");
                     }
-                    */
+                    
                 } catch (Exception e) {
                     System.out.println("Something went wrong!");
                 }
