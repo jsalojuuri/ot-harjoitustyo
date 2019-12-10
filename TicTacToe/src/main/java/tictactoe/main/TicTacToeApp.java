@@ -1,6 +1,9 @@
 package tictactoe.main;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -51,11 +54,17 @@ public class TicTacToeApp extends Application {
     @Override
     public void init() throws Exception { 
         
+        File configFile = new File("config.properties");
+
         Properties properties = new Properties();
-        properties.load(new FileInputStream("config.properties"));
+        properties.setProperty("userFile", "users.txt");
+        properties.setProperty("userTestFile", "userstest.txt");
+        FileWriter writer = new FileWriter(configFile);
+        properties.store(writer, "settings");
         String userFile = properties.getProperty("userFile");
         FilePlayerDao playerDao = new FilePlayerDao(userFile);
-        
+        writer.close();
+
         this.gameService = new GameService(20, playerDao);
         this.appScreen = new BorderPane();  
         this.gameBoard = new GridPane();
