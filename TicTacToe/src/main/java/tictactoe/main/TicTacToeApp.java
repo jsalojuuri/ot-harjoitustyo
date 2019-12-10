@@ -1,17 +1,11 @@
 package tictactoe.main;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -23,8 +17,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import tictactoe.dao.FilePlayerDao;
-import tictactoe.dao.H2PlayerDao;
-import tictactoe.domain.Player;
 import tictactoe.service.GameService;
 
 /**
@@ -54,16 +46,10 @@ public class TicTacToeApp extends Application {
     @Override
     public void init() throws Exception { 
         
-        File configFile = new File("config.properties");
-
         Properties properties = new Properties();
-        properties.setProperty("userFile", "users.txt");
-        properties.setProperty("userTestFile", "userstest.txt");
-        FileWriter writer = new FileWriter(configFile);
-        properties.store(writer, "settings");
+        properties.load(new FileInputStream("./config.properties"));
         String userFile = properties.getProperty("userFile");
         FilePlayerDao playerDao = new FilePlayerDao(userFile);
-        writer.close();
 
         this.gameService = new GameService(20, playerDao);
         this.appScreen = new BorderPane();  
