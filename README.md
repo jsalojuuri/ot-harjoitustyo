@@ -8,6 +8,7 @@ Helsingin Yliopiston kurssin *Ohjelmistotekniikka* laskuharjoituksia ja ohjelmoi
 * [Vaatimusmäärittely](/dokumentointi/vaatimusmaarittely.md)
 * [Käyttöohje](/dokumentointi/kayttoohje.md)
 * [Arkkitehtuuri](/dokumentointi/arkkitehtuuri.md)
+* [Releaset](https://github.com/jsalojuuri/ot-harjoitustyo/releases)
 
 ## Laskuharjoitukset
 
