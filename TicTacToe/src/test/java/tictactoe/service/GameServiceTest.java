@@ -2,13 +2,16 @@ package tictactoe.service;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.List;
 import java.util.Properties;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import tictactoe.dao.Dao;
 import tictactoe.dao.FilePlayerDao;
+import tictactoe.domain.Player;
 
 /**
  *
@@ -53,6 +56,8 @@ public class GameServiceTest {
         assertEquals(true, gameService.isTurnX());
         gameService.changeTurn();
         assertEquals(false, gameService.isTurnX());
+        gameService.changeTurn();
+        assertEquals(true, gameService.isTurnX());
     }
     
     @Test
@@ -75,5 +80,16 @@ public class GameServiceTest {
         gameService.setPlayerO("O");        
         assertEquals("O", gameService.getPlayerO());
     }
+    
+    @Test
+    public void createAndGetandLoginPlayerWorks() {
+        gameService.createPlayer("testPlayerABC");
+        List<Player> players = gameService.getPlayers();
+        assertNotNull(players);
+        assertEquals("testPlayerABC", players.get(0).getName());
+        assertTrue(gameService.login("testPlayerABC"));
+    }
+    
+
     
 }

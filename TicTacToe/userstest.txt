@@ -1,2 +1,1 @@
-testaaja
-test
+testPlayerABC
