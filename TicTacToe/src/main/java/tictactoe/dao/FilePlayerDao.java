@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import tictactoe.domain.Player;
+import tictactoe.service.Player;
 
 /**
  * Methods to manipulate player records stored in a file

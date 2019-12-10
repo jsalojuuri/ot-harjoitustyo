@@ -1,4 +1,4 @@
-package tictactoe.domain;
+package tictactoe.service;
 
 /** Player class that defines "X" and "O" player names and win records
  *

@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 import tictactoe.dao.Dao;
 import tictactoe.dao.FilePlayerDao;
-import tictactoe.domain.Player;
 
 /**
  *

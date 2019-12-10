@@ -1,5 +1,6 @@
-package tictactoe.domain;
+package tictactoe.service;
 
+import tictactoe.service.Player;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
