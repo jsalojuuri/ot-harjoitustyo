@@ -10,6 +10,6 @@
 | 18.11. | 1 | Ohjelman rakenteen uudelleen suunnittelua, koodausta |
 | 26.11. | 7 | Ohjelman koodausta ja refaktorointia |
 | 3.12.  | 6 | Ohjelman koodausta, lisätty checkstyle, parannettu testikattavuutta, lisätty käyttöohje |
-| 10.12. | 1 | Muokattu koodia, lisätty 1. release" | 
+| 10.12. | 4 | Refaktoroitu koodia, lisätty 1. ja 2. release, poistettu testikattavuusraportista epäolennaiset luokat pois ja poistettu koodista turhat luokat, täydennetty lähdekoodin javadoc ja korjattu koneen JAVA_HOME environment, jotta saa itse luotua javadoc tiedostot | 
 
-Yhteensä: 24 tuntia
+Yhteensä: 27 tuntia

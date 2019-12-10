@@ -1,6 +1,6 @@
 package tictactoe.domain;
 
-/**
+/** Player class that defines "X" and "O" player names and win records
  *
  * @author salojuur
  */

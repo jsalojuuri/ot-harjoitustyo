@@ -1,7 +1,7 @@
 package tictactoe.service;
 
 /**
- *
+ * Contains methods initalize, manipulate and check game state
  * @author salojuur
  */
 public class GameState {
@@ -41,6 +41,12 @@ public class GameState {
         this.playerO = playerO;
     }
     
+    /**
+     * Checks if certain game square is played by player X
+     * @param i board row
+     * @param j board column
+     * @return true, is defined square is played by X.
+     */
     public boolean isX(int i, int j) {
         if (gameBoard[i][j].equals("X")) {
             return true;
@@ -49,6 +55,10 @@ public class GameState {
         }  
     }
     
+    /** 
+     * Checks if it's player X's turn
+     * @return true, if player X's turn
+     */
     public boolean isTurnX() {
         return turnX;
     }
@@ -64,13 +74,15 @@ public class GameState {
     public void setGameSquare(int i, int j, String str) {
         this.gameBoard[i][j] = str;
     }
-    
-    
+        
     public void setGameBoard(String[][] gameBoard) {
         this.gameBoard = gameBoard;
     }
     
-    
+    /**
+     * Checks game status
+     * @return eventually returns empty string, if winner is not found, else "X" or "O", if winner is found
+     */
     public String checkGameStatus() {
         String previous = "";
         String current = "";
@@ -79,6 +91,13 @@ public class GameState {
         return checkCols(previous, current, count);  
     }
     
+    /**
+     * Checks if a player has five consecutive marks on board cols
+     * @param previous "X", "O" or empty string
+     * @param current "X", "O" or empty string
+     * @param count keeps track on how many similar consecutive marks there are for the moment
+     * @return eventually returns empty string, if winner is not found, else "X" or "O", if winner is found
+     */
     public String checkCols(String previous, String current, int count) {
         for (int i = 0; i < gameBoard.length; i++) {
             for (int j = 0; j < gameBoard[0].length; j++) {
@@ -100,6 +119,13 @@ public class GameState {
         return checkRows(previous, current, count);
     }
     
+    /**
+     * Checks if a player has five consecutive marks on board rows
+     * @param previous "X", "O" or empty string
+     * @param current "X", "O" or empty string
+     * @param count keeps track on how many similar consecutive marks there are for the moment
+     * @return eventually returns empty string, if winner is not found, else "X" or "O", if winner is found
+     */
     public String checkRows(String previous, String current, int count) {
         for (int i = 0; i < gameBoard.length; i++) {
             for (int j = 0; j < gameBoard[0].length; j++) {

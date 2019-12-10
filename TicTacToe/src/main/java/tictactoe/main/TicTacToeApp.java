@@ -20,7 +20,7 @@ import tictactoe.dao.FilePlayerDao;
 import tictactoe.service.GameService;
 
 /**
- *
+ * JavaFX application for TicTacToe
  * @author salojuur
  */
 public class TicTacToeApp extends Application {
@@ -43,6 +43,10 @@ public class TicTacToeApp extends Application {
     
     private Font font;
     
+    /**
+     * Initialises game
+     * @throws Exception 
+     */
     @Override
     public void init() throws Exception { 
         
@@ -69,6 +73,10 @@ public class TicTacToeApp extends Application {
         
     }
     
+    /**
+     * Starts application
+     * @param primaryStage primary game stage 
+     */
     @Override
     public void start(Stage primaryStage) {
 
@@ -184,6 +192,10 @@ public class TicTacToeApp extends Application {
         
     }
     
+    /**
+     * Sets game board
+     * @param gameBoard game board 
+     */
     public void setGameBoard(String[][] gameBoard) {
         for (int i = 0; i < gameBoard.length; i++) {
             for (int j = 0; j < gameBoard[0].length; j++) {
@@ -193,6 +205,12 @@ public class TicTacToeApp extends Application {
         }  
     }
     
+    /**
+     * Creates new button
+     * @param i row position
+     * @param j column position
+     * @return created Button object
+     */
     public Button createButton(int i , int j) {
         Button button = new Button();
         button.setPrefSize(80, 40);
@@ -201,6 +219,11 @@ public class TicTacToeApp extends Application {
         return button;
     }
     
+    /**
+     * Checks game status
+     * @param player player 1
+     * @param opponent player 2
+     */
     public void checkStatus(String player, String opponent) {
         
         if (gameService.checkStatus().equals(player)) {
@@ -220,6 +243,13 @@ public class TicTacToeApp extends Application {
         } 
     }
     
+    /**
+     * Sets state for buttons
+     * @param button button under inspection
+     * @param i row position
+     * @param j column position
+     * @return Button object
+     */
     public Button setStateFor(Button button, int i, int j) {
         button.setOnAction((event) -> {
             if (button.getText().isEmpty()) {

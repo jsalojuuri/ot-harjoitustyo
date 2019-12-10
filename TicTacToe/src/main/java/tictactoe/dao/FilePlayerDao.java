@@ -14,7 +14,7 @@ import java.util.Scanner;
 import tictactoe.domain.Player;
 
 /**
- *
+ * Methods to manipulate player records stored in a file
  * @author salojuur
  */
 public class FilePlayerDao implements Dao<Player, Integer>  {
@@ -38,10 +38,11 @@ public class FilePlayerDao implements Dao<Player, Integer>  {
         }
     }
     
-
-     
-    
-    
+    /** 
+     * Writes player's information on file
+     * @param player player to be created
+     * @throws SQLException 
+     */
     @Override
     public void create(Player player) throws SQLException {
         players.add(player);
@@ -54,21 +55,32 @@ public class FilePlayerDao implements Dao<Player, Integer>  {
         }
     }
     
-    @Override
-    public Player read(Integer key) throws SQLException {
-        return null;
-    }
-    
+    /**
+     * Updates player records
+     * @param player identifies player as unique. 
+     * @return updated player
+     * @throws SQLException 
+     */
     @Override
     public Player update(Player player) throws SQLException {
         return null;
     }
     
+    /**
+     * Deletes player records
+     * @param player identifies player as unique
+     * @throws SQLException 
+     */
     @Override
-    public void delete(Integer key) throws SQLException {
+    public void delete(Player player) throws SQLException {
         
     }
     
+    /**
+     * Lists all players in userfile
+     * @return list of players
+     * @throws SQLException 
+     */
     @Override
     public List<Player> list() throws SQLException {
         return players;
