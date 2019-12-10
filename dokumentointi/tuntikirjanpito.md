@@ -9,6 +9,7 @@
 | 12.11.| 1    | Viikon 3 palautuskriteerien tarkistus, ohjelman koodausta |
 | 18.11. | 1 | Ohjelman rakenteen uudelleen suunnittelua, koodausta |
 | 26.11. | 7 | Ohjelman koodausta ja refaktorointia |
-| 3.12.  | 6 | Ohejlman koodausta, lisätty checkstyle, parannettu testikattavuutta, lisätty käyttöohje |
+| 3.12.  | 6 | Ohjelman koodausta, lisätty checkstyle, parannettu testikattavuutta, lisätty käyttöohje |
+| 10.12. | 1 | Muokattu koodia, lisätty 1. release" | 
 
-Yhteensä: 23 tuntia
+Yhteensä: 24 tuntia
