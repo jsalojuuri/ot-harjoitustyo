@@ -168,7 +168,7 @@ public class TicTacToeApp extends Application {
                 infoMessage.setTextFill(Color.GREEN);
                 primaryStage.setScene(startScene);      
             } else {
-                playerCreationMessage.setText("Name already taken, please ue another name");
+                playerCreationMessage.setText("Name already taken, please use another name");
                 playerCreationMessage.setTextFill(Color.RED);        
             }
  

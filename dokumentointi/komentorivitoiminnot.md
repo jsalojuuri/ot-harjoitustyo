@@ -2,7 +2,7 @@
 
 ``mvn test jacoco:jacoco``
 
-## Checktyle raportin generointi 
+## Checkstyle raportin generointi 
 
 ``mvn jxr:jxr checkstyle:checkstyle``
 

@@ -8,4 +8,3 @@
 ## Huomioitavaa
 
 * Peli ei vielä tallenna pelaajien pelitilastoja (voitot, tasapelit, häviöt)
-* Peli ei tarkista vinorivejä
