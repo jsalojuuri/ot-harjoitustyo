@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import tictactoe.dao.Dao;
 import tictactoe.dao.FilePlayerDao;
 import tictactoe.service.GameService;
 
@@ -25,12 +26,16 @@ import tictactoe.service.GameService;
  */
 public class TicTacToeApp extends Application {
     private GameService gameService;
+    private Dao playerDao;
+    
     private BorderPane appScreen;
     private VBox startPane;
     private HBox startInputPane1;
     private HBox startInputPane2;
+    private HBox startInputPane3;
     private VBox newPlayerPane;
     private GridPane gameBoard;
+    private VBox gameOverPane;
     
     private Scene startScene;
     private Scene newPlayerScene;
@@ -53,19 +58,22 @@ public class TicTacToeApp extends Application {
         Properties properties = new Properties();
         properties.load(new FileInputStream("./config.properties"));
         String userFile = properties.getProperty("userFile");
-        FilePlayerDao playerDao = new FilePlayerDao(userFile);
-
-        this.gameService = new GameService(20, playerDao);
+        playerDao = new FilePlayerDao(userFile);
+        gameService = new GameService(10, playerDao);
+        
         this.appScreen = new BorderPane();  
         this.gameBoard = new GridPane();
+        this.gameOverPane = new VBox(100);
         this.startPane = new VBox(30);
         this.startInputPane1 = new HBox(10);
         this.startInputPane2 = new HBox(10);
+        this.startInputPane3 = new HBox(10);
         this.newPlayerPane = new VBox(10);
         this.font = new Font("Arial", 30);
         
         this.gameLabel = new Label("");
         gameLabel.setFont(font);
+        gameLabel.setText("Player X, please make your move");
         this.startLabel = new Label("Tic-Tac-Toe");
         startLabel.setFont(font);
         this.playerXName = "X";
@@ -86,12 +94,16 @@ public class TicTacToeApp extends Application {
         // Start inputpanes: player inputs
         Label playerXLabel = new Label("Player X");
         Label playerOLabel = new Label("Player O");
+        Label boardWidthLabel = new Label("Board width");
         TextField playerXInput = new TextField();
         TextField playerOInput = new TextField();
+        TextField boardWidthInput = new TextField();
         Label playerXMessage = new Label();
         Label playerOMessage = new Label();
+        Label boardWidthMessage = new Label();
         Button setPlayerXButton = new Button("Set player X");
         Button setPlayerOButton = new Button("Set player O");
+        Button setBoardWidthButton = new Button("Set board size");
         
         setPlayerXButton.setOnAction(e->{
             String playerX = playerXInput.getText();
@@ -100,6 +112,7 @@ public class TicTacToeApp extends Application {
                 this.gameLabel.setText(playerX + ", please make your move");
                 playerXMessage.setText(playerX + " set as Player X");
                 playerXMessage.setTextFill(Color.GREEN);
+                playerXInput.clear();
             } else {
                 playerXMessage.setText(playerX + " does not exist");
                 playerXMessage.setTextFill(Color.RED);
@@ -112,16 +125,39 @@ public class TicTacToeApp extends Application {
                 this.playerOName = playerO;
                 playerOMessage.setText(playerO + " set as Player O");
                 playerOMessage.setTextFill(Color.GREEN);
+                playerOInput.clear();
             } else {
                 playerOMessage.setText(playerO + " does not exist");
                 playerOMessage.setTextFill(Color.RED);
             }  
-        });         
+        });
+        
+        setBoardWidthButton.setOnAction(e->{
+            try {
+                int boardWidth = Integer.parseInt(boardWidthInput.getText());
+                if (boardWidth < 5) {
+                    boardWidthMessage.setText("Minimum board size is 5");
+                    boardWidthMessage.setTextFill(Color.RED);
+                } else if (boardWidth > 20) {
+                    boardWidthMessage.setText("Maximum board size is 20");
+                    boardWidthMessage.setTextFill(Color.RED);
+                } else {
+                    this.gameService = new GameService(boardWidth, playerDao);
+                    boardWidthMessage.setText("Board size set to " + boardWidth + " x " + boardWidth);
+                    boardWidthMessage.setTextFill(Color.GREEN);
+                }    
+            } catch (NumberFormatException ex) {
+                boardWidthMessage.setText("Board width must be an integer");
+                boardWidthMessage.setTextFill(Color.RED);
+            }
+            
+        }); 
         
         
         
         startInputPane1.getChildren().addAll(playerXLabel, playerXInput, setPlayerXButton, playerXMessage);
         startInputPane2.getChildren().addAll(playerOLabel, playerOInput, setPlayerOButton, playerOMessage);
+        startInputPane3.getChildren().addAll(boardWidthLabel, boardWidthInput, setBoardWidthButton, boardWidthMessage);
         
         // Start pane: infomessage & buttons
         Label infoMessage = new Label();
@@ -129,6 +165,7 @@ public class TicTacToeApp extends Application {
         Button createPlayerButton = new Button("Create new player");
  
         startGameButton.setOnAction(e->{
+            setGameBoard(gameService.getGameBoard());
             primaryStage.setScene(gameScene);
         });  
         
@@ -137,14 +174,12 @@ public class TicTacToeApp extends Application {
         });
         
         // Start scene
-        startPane.getChildren().addAll(infoMessage, startText, startInputPane1, startInputPane2, startGameButton, createPlayerButton);
-        startScene = new Scene(startPane, 600, 400);
-        
+        startPane.getChildren().addAll(infoMessage, startText, startInputPane1, startInputPane2, startInputPane3, startGameButton, createPlayerButton);
+        startScene = new Scene(startPane, 700, 400);
         
         //New playername pane: input
         HBox newPlayerNamePane = new HBox(10);
         newPlayerNamePane.setPadding(new Insets(10));
-        
         
         TextField newPlayerNameInput = new TextField(); 
         Label newPlayerNameLabel = new Label("Player name");
@@ -166,7 +201,9 @@ public class TicTacToeApp extends Application {
                 playerCreationMessage.setText("");                
                 infoMessage.setText("new player " + playerName + " created");
                 infoMessage.setTextFill(Color.GREEN);
-                primaryStage.setScene(startScene);      
+                primaryStage.setScene(startScene);
+                playerXInput.clear();
+                playerOInput.clear();
             } else {
                 playerCreationMessage.setText("Name already taken, please use another name");
                 playerCreationMessage.setTextFill(Color.RED);        
@@ -176,14 +213,14 @@ public class TicTacToeApp extends Application {
         
         newPlayerPane.getChildren().addAll(playerCreationMessage, newPlayerNamePane, createNewPlayerButton); 
        
-        newPlayerScene = new Scene(newPlayerPane, 600, 400);
+        newPlayerScene = new Scene(newPlayerPane, 700, 400);
         
         
         // Game scene
         appScreen.setTop(gameLabel);
         appScreen.setCenter(gameBoard);
-        gameScene = new Scene(appScreen, 1000, 1000);
-        setGameBoard(gameService.getGameBoard());
+        gameScene = new Scene(appScreen, 2000, 1000);
+        
 
         //primary stage
         primaryStage.setTitle("Tic-Tac-Toe");
@@ -213,7 +250,7 @@ public class TicTacToeApp extends Application {
      */
     public Button createButton(int i , int j) {
         Button button = new Button();
-        button.setPrefSize(80, 40);
+        button.setPrefSize(80.0, 40.0);
         button.setFont(font);
         button = setStateFor(button, i, j);
         return button;

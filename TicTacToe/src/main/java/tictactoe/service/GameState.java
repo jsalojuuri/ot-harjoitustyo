@@ -14,11 +14,6 @@ public class GameState {
     private final int boardWidth;
     private boolean turnX;
     private String [][] gameBoard;
-    private  Map<String, Integer> marks;
-    
-    
-
-    
     
     public GameState(int boardWidth) {
         this.playerX = "Player X";
@@ -31,13 +26,6 @@ public class GameState {
                 gameBoard[i][j] = "";
             }
         } 
-        //initialise 
-        marks = new HashMap<>();
-        marks.put("r", 0);
-        marks.put("l", 0);
-        marks.put("d1", 0);
-        marks.put("d2", 0);
-        
     }
 
     public String getPlayerX() {
@@ -122,7 +110,7 @@ public class GameState {
     
     /**
      * Checks if a player has five consecutive marks on board columns, rows or diagonals
-     * @param checkType rows, cols, diagUp or diagDown
+     * @param checkType rows, cols, diag1, diag2, diag3, diag4
      * @return empty string, if winner is not found, else "X" or "O", if winner is found
      */
     public String check(String checkType) {              
@@ -176,7 +164,7 @@ public class GameState {
     }
     
     /**
-     * Checks what is the current gameboard square for selected checktype
+     * Checks what is the current gameBoard square string for selected checkType
      * @param i for loop parameter i
      * @param j for loop parameter j
      * @param checkType rows, cols, diag1, diag2, diag3 or diag4
