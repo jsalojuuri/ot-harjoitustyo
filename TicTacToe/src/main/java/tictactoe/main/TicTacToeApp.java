@@ -170,6 +170,8 @@ public class TicTacToeApp extends Application {
  
         startGameButton.setOnAction(e->{
             setGameBoard(gameService.getGameBoard());
+            gameService.setPlayerX(playerXName);
+            gameService.setPlayerO(playerOName);
             primaryStage.setScene(gameScene);
         });  
         
@@ -232,7 +234,10 @@ public class TicTacToeApp extends Application {
         newGameButton.setOnAction(e->{
             gameBoard.setDisable(false);
             gameService = new GameService(10, playerDao);
+            gameService.setPlayerX(playerXName);
+            gameService.setPlayerO(playerOName);
             setGameBoard(gameService.getGameBoard());
+            gameLabel.setText("New game started. " + gameService.getPlayerX() + ", please make your move");
             primaryStage.setScene(gameScene);
         });
         
@@ -294,17 +299,17 @@ public class TicTacToeApp extends Application {
         
         if (gameService.checkStatus().equals(player)) {
             if (player.equals("X")) {
-                gameLabel.setText(this.playerXName + " WON!");
+                gameLabel.setText(gameService.getPlayerX() + " WON!");
             } else {
-                gameLabel.setText(this.playerOName + " WON!");
+                gameLabel.setText(gameService.getPlayerO() + " WON!");
             }
             gameBoard.setDisable(true);
             appScreen.setBottom(gameButtonPane);
         } else {
             if (opponent.equals("X")) {
-                gameLabel.setText(this.playerXName + ", please make your move ");
+                gameLabel.setText(gameService.getPlayerX() + ", please make your move ");
             } else {
-                gameLabel.setText(this.playerOName + ", please make your move ");
+                gameLabel.setText(gameService.getPlayerO() + ", please make your move ");
             }
             
         } 
