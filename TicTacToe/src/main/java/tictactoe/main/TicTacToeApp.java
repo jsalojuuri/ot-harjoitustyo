@@ -30,12 +30,12 @@ public class TicTacToeApp extends Application {
     
     private BorderPane appScreen;
     private VBox startPane;
+    private VBox newPlayerPane;
     private HBox startInputPane1;
     private HBox startInputPane2;
     private HBox startInputPane3;
-    private VBox newPlayerPane;
+    private HBox gameButtonPane;
     private GridPane gameBoard;
-    private VBox gameOverPane;
     
     private Scene startScene;
     private Scene newPlayerScene;
@@ -47,6 +47,7 @@ public class TicTacToeApp extends Application {
     private String playerOName;
     
     private Font font;
+    private Font gameButtonFont;
     
     /**
      * Initialises game
@@ -63,13 +64,15 @@ public class TicTacToeApp extends Application {
         
         this.appScreen = new BorderPane();  
         this.gameBoard = new GridPane();
-        this.gameOverPane = new VBox(100);
         this.startPane = new VBox(30);
         this.startInputPane1 = new HBox(10);
         this.startInputPane2 = new HBox(10);
         this.startInputPane3 = new HBox(10);
+        this.gameButtonPane = new HBox(10);
+        gameButtonPane.setPadding(new Insets(5));
         this.newPlayerPane = new VBox(10);
         this.font = new Font("Arial", 30);
+        this.gameButtonFont = new Font("Arial", 20);
         
         this.gameLabel = new Label("");
         gameLabel.setFont(font);
@@ -138,13 +141,14 @@ public class TicTacToeApp extends Application {
                 if (boardWidth < 5) {
                     boardWidthMessage.setText("Minimum board size is 5");
                     boardWidthMessage.setTextFill(Color.RED);
-                } else if (boardWidth > 20) {
-                    boardWidthMessage.setText("Maximum board size is 20");
+                } else if (boardWidth > 15) {
+                    boardWidthMessage.setText("Maximum board size is 15");
                     boardWidthMessage.setTextFill(Color.RED);
                 } else {
                     this.gameService = new GameService(boardWidth, playerDao);
                     boardWidthMessage.setText("Board size set to " + boardWidth + " x " + boardWidth);
                     boardWidthMessage.setTextFill(Color.GREEN);
+                    boardWidthInput.clear();
                 }    
             } catch (NumberFormatException ex) {
                 boardWidthMessage.setText("Board width must be an integer");
@@ -204,6 +208,7 @@ public class TicTacToeApp extends Application {
                 primaryStage.setScene(startScene);
                 playerXInput.clear();
                 playerOInput.clear();
+                boardWidthInput.clear();
             } else {
                 playerCreationMessage.setText("Name already taken, please use another name");
                 playerCreationMessage.setTextFill(Color.RED);        
@@ -216,10 +221,34 @@ public class TicTacToeApp extends Application {
         newPlayerScene = new Scene(newPlayerPane, 700, 400);
         
         
-        // Game scene
+        // Game view buttons setup
+        Button newGameButton = new Button("New Game");
+        Button startMenuButton = new Button("Start menu");
+        startMenuButton.setFont(gameButtonFont);
+        startMenuButton.setStyle("-fx-background-color: #00ff00");
+        newGameButton.setFont(gameButtonFont);
+        newGameButton.setStyle("-fx-background-color: #00ff00");
+        
+        newGameButton.setOnAction(e->{
+            gameBoard.setDisable(false);
+            gameService = new GameService(10, playerDao);
+            setGameBoard(gameService.getGameBoard());
+            primaryStage.setScene(gameScene);
+        });
+        
+        startMenuButton.setOnAction(e->{
+            gameBoard.setDisable(false);
+            this.gameService = new GameService(10, playerDao);
+            primaryStage.setScene(startScene); 
+        });
+        
+        gameButtonPane.getChildren().addAll(newGameButton, startMenuButton);
+        
+        // Game view setup
         appScreen.setTop(gameLabel);
         appScreen.setCenter(gameBoard);
-        gameScene = new Scene(appScreen, 2000, 1000);
+        
+        gameScene = new Scene(appScreen, 1500, 1000);
         
 
         //primary stage
@@ -270,6 +299,7 @@ public class TicTacToeApp extends Application {
                 gameLabel.setText(this.playerOName + " WON!");
             }
             gameBoard.setDisable(true);
+            appScreen.setBottom(gameButtonPane);
         } else {
             if (opponent.equals("X")) {
                 gameLabel.setText(this.playerXName + ", please make your move ");

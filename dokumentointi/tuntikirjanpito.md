@@ -11,6 +11,6 @@
 | 26.11. | 7 | Ohjelman koodausta ja refaktorointia |
 | 3.12.  | 6 | Ohjelman koodausta, lisätty checkstyle, parannettu testikattavuutta, lisätty käyttöohje |
 | 10.12. | 6 | Refaktoroitu koodia, lisätty 1. ja 2. release, poistettu testikattavuusraportista epäolennaiset luokat pois ja poistettu koodista turhat luokat, täydennetty lähdekoodin javadoc ja korjattu koneen JAVA_HOME environment, jotta saa itse luotua javadoc tiedostot, koodikatselmointi | 
-| 12.12. | 7 | Pelin ratkaisualgoritmin viimeistely ja koodin stilisointi, mahdollisuus säätää laudan koko | 
+| 12.12. | 8 | Pelin ratkaisualgoritmin viimeistely ja koodin stilisointi, mahdollisuus säätää laudan koko ja aloittaa uusi peli edellisen perään | 
 
-Yhteensä: 36 tuntia
+Yhteensä: 37 tuntia
