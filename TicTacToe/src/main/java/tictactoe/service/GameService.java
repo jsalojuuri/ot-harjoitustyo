@@ -25,20 +25,10 @@ public class GameService {
     */   
     public boolean createPlayer(String playerName) {
         
-        List<Player> players = new ArrayList<>();
-        
-        try {
-            players = playerDao.list();
-            for (Player p: players) {
-                if (p.getName().equals(playerName)) {
-                    return false;
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Exception: " + e);
+        if (playerExists(playerName)) {
+            return false;
         }
 
-        
         Player player = new Player(playerName);
         try {
             playerDao.create(player);
@@ -47,6 +37,43 @@ public class GameService {
         }
         
         return true;
+    }
+    
+    public boolean deletePlayer(String playerName) {
+        
+        if (!playerExists(playerName)) {
+            return false;
+        }
+        
+        try {
+            List<Player> players = this.getPlayers();
+            for (Player player: players) {
+                if (player.getName().equals(playerName)) {
+                    playerDao.delete(player);
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex);
+        }
+        return true;
+        
+    }
+    
+    public boolean playerExists(String playerName) {
+        
+        List<Player> players = new ArrayList<>();
+        
+        try {
+            players = playerDao.list();
+            for (Player p: players) {
+                if (p.getName().equals(playerName)) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+        }
+        return false;
     }
     
     /**

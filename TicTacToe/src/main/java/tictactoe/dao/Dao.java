@@ -8,8 +8,8 @@ import java.util.*;
  * @author salojuur
  */
 public interface Dao<T, K> {
-    void create(T object) throws SQLException;
-    T update(T object) throws SQLException;
-    void delete(T object) throws SQLException;
-    List<T> list() throws SQLException;
+    void create(T object) throws Exception;
+    T update(T object) throws Exception;
+    void delete(T object) throws Exception;
+    List<T> list() throws Exception;
 }

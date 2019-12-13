@@ -31,6 +31,7 @@ public class TicTacToeApp extends Application {
     private BorderPane appScreen;
     private VBox startPane;
     private VBox newPlayerPane;
+    private VBox deletePlayerPane;
     private HBox startInputPane1;
     private HBox startInputPane2;
     private HBox startInputPane3;
@@ -39,6 +40,7 @@ public class TicTacToeApp extends Application {
     
     private Scene startScene;
     private Scene newPlayerScene;
+    private Scene deletePlayerScene;
     private Scene gameScene;
 
     private Label startLabel;
@@ -71,6 +73,7 @@ public class TicTacToeApp extends Application {
         this.gameButtonPane = new HBox(10);
         gameButtonPane.setPadding(new Insets(5));
         this.newPlayerPane = new VBox(10);
+        this.deletePlayerPane = new VBox(10);
         this.font = new Font("Arial", 30);
         this.gameButtonFont = new Font("Arial", 20);
         
@@ -167,6 +170,7 @@ public class TicTacToeApp extends Application {
         Label infoMessage = new Label();
         Button startGameButton = new Button("Start new game");
         Button createPlayerButton = new Button("Create new player");
+        Button deletePlayerButton = new Button("Delete player");
  
         startGameButton.setOnAction(e->{
             setGameBoard(gameService.getGameBoard());
@@ -179,8 +183,12 @@ public class TicTacToeApp extends Application {
             primaryStage.setScene(newPlayerScene);   
         });
         
+        deletePlayerButton.setOnAction(e->{
+            primaryStage.setScene(deletePlayerScene);   
+        });
+        
         // Start scene
-        startPane.getChildren().addAll(infoMessage, startText, startInputPane1, startInputPane2, startInputPane3, startGameButton, createPlayerButton);
+        startPane.getChildren().addAll(infoMessage, startText, startInputPane1, startInputPane2, startInputPane3, startGameButton, createPlayerButton, deletePlayerButton);
         startScene = new Scene(startPane, 700, 400);
         
         //New playername pane: input
@@ -194,7 +202,7 @@ public class TicTacToeApp extends Application {
         
         // New player pane: message & button
         Label playerCreationMessage = new Label();
-        Button createNewPlayerButton = new Button("create");
+        Button createNewPlayerButton = new Button("Create player");
         createNewPlayerButton.setPadding(new Insets(10));
 
         createNewPlayerButton.setOnAction(e->{
@@ -221,6 +229,48 @@ public class TicTacToeApp extends Application {
         newPlayerPane.getChildren().addAll(playerCreationMessage, newPlayerNamePane, createNewPlayerButton); 
        
         newPlayerScene = new Scene(newPlayerPane, 700, 400);
+        
+        
+        // Delete player panes & scene
+        HBox deleteAPlayerPane = new HBox(10);
+        deleteAPlayerPane.setPadding(new Insets(10));
+        
+        TextField deleteAPlayerInput = new TextField(); 
+        Label deleteAPlayerLabel = new Label("Player name");
+        deleteAPlayerLabel.setPrefWidth(100);
+        deleteAPlayerPane.getChildren().addAll(deleteAPlayerLabel, deleteAPlayerInput);
+        
+        
+        Label playerDeleteMessage = new Label();
+        Button deleteAPlayerButton = new Button("Delete player");
+        deleteAPlayerButton.setPadding(new Insets(10));
+
+        deleteAPlayerButton.setOnAction(e->{
+            String playerName = deleteAPlayerInput.getText();
+   
+            if (!gameService.login(playerName)) {
+                playerDeleteMessage.setText("Error, player " + playerName + " not found. Player deletion cancelled.");
+                playerDeleteMessage.setTextFill(Color.RED);              
+            } else {
+                gameService.deletePlayer(playerName);
+                playerDeleteMessage.setText("");                
+                infoMessage.setText("player " + playerName + " deleted");
+                infoMessage.setTextFill(Color.RED);
+                primaryStage.setScene(startScene);
+                playerXInput.clear();
+                playerOInput.clear();
+                boardWidthInput.clear();
+            } 
+ 
+        });  
+        
+        deletePlayerPane.getChildren().addAll(playerDeleteMessage, deleteAPlayerPane, deleteAPlayerButton); 
+       
+        deletePlayerScene = new Scene(deletePlayerPane, 700, 400);
+        
+        
+        
+        
         
         
         // Game view buttons setup
@@ -262,6 +312,7 @@ public class TicTacToeApp extends Application {
         primaryStage.show();
         
     }
+    
     
     /**
      * Sets game board

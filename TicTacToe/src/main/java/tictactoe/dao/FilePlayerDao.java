@@ -6,6 +6,7 @@
 package tictactoe.dao;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -44,14 +45,14 @@ public class FilePlayerDao implements Dao<Player, Integer>  {
      * @throws SQLException 
      */
     @Override
-    public void create(Player player) throws SQLException {
+    public void create(Player player) throws Exception {
         players.add(player);
         try (FileWriter writer = new FileWriter(new File(file))) {
             for (Player p: players) {
                 writer.write(p.getName() + "\n");
             }
-        } catch (Exception e) {
-            System.out.println("Exception: " + e);
+        } catch (FileNotFoundException ex) {
+            System.out.println("File " + file + " not found, exception message: " +ex);
         }
     }
     
@@ -62,7 +63,7 @@ public class FilePlayerDao implements Dao<Player, Integer>  {
      * @throws SQLException 
      */
     @Override
-    public Player update(Player player) throws SQLException {
+    public Player update(Player player) throws Exception {
         return null;
     }
     
@@ -72,8 +73,22 @@ public class FilePlayerDao implements Dao<Player, Integer>  {
      * @throws SQLException 
      */
     @Override
-    public void delete(Player player) throws SQLException {
+    public void delete(Player player) throws Exception {
         
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).equals(player)) {
+                players.remove(i);
+            }
+        }
+        
+        players.stream().filter(x -> !player.equals(x));
+        try (FileWriter writer = new FileWriter(new File(file))) {
+            for (Player p: players) {
+                writer.write(p.getName() + "\n");
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println("File " + file + " not found, exception message: " +ex);
+        }
     }
     
     /**
