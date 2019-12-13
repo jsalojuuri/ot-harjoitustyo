@@ -90,9 +90,34 @@ public class GameServiceTest {
         assertTrue(gameService.login("testPlayerABC"));
     }
     
+    @Test
+    public void cannotAddPlayerThatAlreadyExists() {
+        gameService.createPlayer("testPlayerABC2");
+        List<Player> players = gameService.getPlayers();
+        assertEquals("testPlayerABC2", players.get(0).getName());
+        assertEquals(false, gameService.createPlayer("testPlayerABC2"));
+    }
+    
+    @Test
+    public void deletePlayerWorks() {
+        gameService.createPlayer("testPlayerABC3");
+        List<Player> players = gameService.getPlayers();
+        assertEquals("testPlayerABC3", players.get(0).getName());
+        gameService.deletePlayer("testPlayerABC3");
+        players = gameService.getPlayers();
+        assertEquals(true,players.isEmpty());
+    }
+    
+    @Test
+    public void canNotDeletePlayerThatDoesNotExist() {
+        assertEquals(false, gameService.deletePlayer("foo"));
+    }
+        
     @After
     public void tearDown() {
         gameService.deletePlayer("testPlayerABC");
+        gameService.deletePlayer("testPlayerABC2");
+        gameService.deletePlayer("testPlayerABC3");
     }
     
 }

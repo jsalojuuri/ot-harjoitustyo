@@ -38,10 +38,13 @@ public class FilePlayerDaoTest {
     }
     
     @Test
-    public void createAndListPlayersWorks() throws Exception {
+    public void createAndListAndDeletePlayersWorks() throws Exception {
         dao.create(player);
         List<Player> players = dao.list();
         assertEquals("Player", players.get(0).getName());
+        dao.delete(player);
+        players = dao.list();
+        assertEquals(true, players.isEmpty());
     }
     
     @After
