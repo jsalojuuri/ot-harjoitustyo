@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.List;
 import java.util.Properties;
+import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -89,6 +90,9 @@ public class GameServiceTest {
         assertTrue(gameService.login("testPlayerABC"));
     }
     
-
+    @After
+    public void tearDown() {
+        gameService.deletePlayer("testPlayerABC");
+    }
     
 }

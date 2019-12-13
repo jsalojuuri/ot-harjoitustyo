@@ -261,17 +261,11 @@ public class TicTacToeApp extends Application {
                 playerOInput.clear();
                 boardWidthInput.clear();
             } 
- 
         });  
         
         deletePlayerPane.getChildren().addAll(playerDeleteMessage, deleteAPlayerPane, deleteAPlayerButton); 
-       
         deletePlayerScene = new Scene(deletePlayerPane, 700, 400);
-        
-        
-        
-        
-        
+
         
         // Game view buttons setup
         Button newGameButton = new Button("New Game");

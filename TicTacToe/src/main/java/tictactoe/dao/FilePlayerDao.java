@@ -81,7 +81,6 @@ public class FilePlayerDao implements Dao<Player, Integer>  {
             }
         }
         
-        players.stream().filter(x -> !player.equals(x));
         try (FileWriter writer = new FileWriter(new File(file))) {
             for (Player p: players) {
                 writer.write(p.getName() + "\n");
