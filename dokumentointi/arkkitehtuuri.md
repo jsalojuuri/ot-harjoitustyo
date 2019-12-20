@@ -66,7 +66,15 @@ Pelaajista tallennetaan toistaiseksi vain nimi ja eri pelaajat erotellaan omille
 
 ## Päätoiminnallisuudet
 
-(tulossa myöhemmin)
+Käyn seuraavaksi sekvenssikaavioiden avulla läpi muutaman sovelluksen päätoiminnallisuuden. 
+
+### Uuden pelin käynnistys
+
+Käyttäjän painaessa pre-game valikossa nappia *Start new game* etenee sovelluksen kontrolli seuraavasti:
+
+![Uuden pelin käynnistys](./assets/sequence_startNewGame.png)
+
+Käyttöliittymän tapahtumankäsittelijä kutsuu ensin omaa metodiaan setGameBoard parametrilla gameService.getGameBoard(), joka käynnistää kutsun GameService luokan metodille getGameBoard(). GameService palauttaa setGameBoard() metodille  jo aikaisemmin alustetun pelilaudan, jonka jälkeen setGameBoard() jatkaa lisäämällä aikaisemmin alustettuun käyttöliittymän GridPane olioon gameBoard tyhjät pelinappulat. Tämän jälkeen kutsutaan GameService luokan metodia setPlayerX() parametrilla, joka sisältää esimääritetyn tai käyttäjän asettaman pelaajan nimen. GameService kutsuu heti tämän jälkeen GameState luokan metodia setPlayerX parametrinaan sama pelaajan nimi, jonka jälkeen GameState asettaa String-tyyppisen luokkamuutujansa playerX arvoksi annetun pelaajan nimen. Sama toistetaan pelaajan O osalta. Lopuksi käyttöliittymän tapahtumakäsittelijä asettaa päänäkymäksi pelinäkymän ja palauttaa kontrollin käyttäjälle.
 
 ## Ohjelman rakenteeseen jääneet heikkoudet
 
