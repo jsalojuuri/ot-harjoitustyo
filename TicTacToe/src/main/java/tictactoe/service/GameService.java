@@ -70,7 +70,7 @@ public class GameService {
     * @param   playerName   player name
     * @return   true, if player already exists, else false
     */  
-    public boolean playerExists(String playerName) {
+    private boolean playerExists(String playerName) {
         
         List<Player> players = new ArrayList<>();
         

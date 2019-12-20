@@ -22,6 +22,29 @@ Käyttöliittymä on eristetty täysin sovelluslogiikasta, se kutsuu aina tarvit
 
 ## Sovelluslogiikka
 
+Sovelluksen looginen datamalli koostuu luokasta **Player**, josta ilmenee toistaiseksi vain pelaajan nimi. 
+
+![Player](./assets/player.png)
+
+Toiminnallisista kokonaisuuksista vastaa luokka **GameService**, tarjoten käyttöliittymän toiminnoille useita metodeja:
+* boolean createPlayer(String playerName)
+* boolean deletePlayer(String playerName)
+* boolean login(String playerName)
+* void initGameBoard(int width)
+* String[][] getGameBoard()
+* void setGameSquare(int i, int j, String chip)
+* void changeTurn()
+* String checkStatus()
+* boolean isTurnX()
+* String getPlayerX()
+* String getPlayerO()
+* void setPlayerX(String playerX)
+* void setPlayerO(String playerO)
+
+GameService pääsee käsiksi pelaajiin pakkauksessa tictactoe.dao sijaitsevan rajapinnan **Dao** toteuttavan **FilePlayerDao** luokan kautta. Luokan toteutus injektoidaan GameService luokalle konstruktorikutsun yhteydessä.
+
+Pelin sisäisestä tilanteesta vastaa luokka **GameState**, joka tarjoaa GameServicelle erilaisia pelitilanteen tarkistamiseen ja manipuloimiseen liittyviä metodeja.
+
 Ohjelman luokkien väliset suhteet luokkakaaviona:
 
 ![Luokkakaaviona](./assets/tictactoe.png)
