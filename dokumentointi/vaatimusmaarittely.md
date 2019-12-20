@@ -34,7 +34,7 @@ Pelissä on vain yksi käyttäjärooli: *pelaaja*.
 
 ## Jatkokehitysideoita
 
-* Tilastoidaan pelaajien voitot, tappiot ja tasapelit ja lisätään käyttöliittymään listaus näistä aina pelin jälkeen. Player-luokkaan on jo lisätty metodit tätä tukemaan, mutta aikatauluhaasteen vuoksi lopulliseen toteutukseen ei jäänyt enää aikaa.
+* Tilastoidaan pelaajien voitot, tappiot ja tasapelit ja lisätään käyttöliittymään listaus näistä aina pelin jälkeen.
 * Luodaan valmiiksi eritasoisia tekoälypelaajia, jolloin ihminen voi pelata konetta vastaan
 * Toiminnallisuus, jolla pelin voi keskeyttää ja palata siihen halutessaan myöhemmin aloitusvalikosta 
 * Pelaajalistauksen sivutus ja/tai hakutoiminnallisuus
