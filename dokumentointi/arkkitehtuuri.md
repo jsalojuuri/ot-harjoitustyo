@@ -10,13 +10,14 @@ Pakkaus *tictactoe.main* sisältää JavaFX:llä toteutetun käyttöliittymän, 
 
 ## Käyttöliittymä
 
-Käyttöliiittymä sisältää kolme näkymää
+Käyttöliiittymä sisältää neljä näkymää
 
 * Aloitus
 * Uuden käyttäjän luominen
+* Pelaajan poistaminen
 * Pelilauta
 
-Jokainen näistä on toteutettu omana JavaFX Scene-oliona. näkymistä aina yksi kerrallaan on näkyvissä, eli sijoitettu sovelluksen stageen. Käyttöliittymä on rakennettu ohjelmallisesti luokassa *tictactoe.main.TicTacToeApp*.
+Jokainen näistä on toteutettu omana JavaFX Scene-oliona. Näkymistä aina yksi kerrallaan on näkyvissä, eli sijoitettu sovelluksen stageen. Käyttöliittymä on rakennettu ohjelmallisesti luokassa *tictactoe.main.TicTacToeApp*.
 
 Käyttöliittymä on eristetty täysin sovelluslogiikasta, se kutsuu aina tarvittaessa sovelluslogiikan toteuttavan olion *gameService* metodeja.
 
