@@ -26,7 +26,7 @@ Pelissä on vain yksi käyttäjärooli: *pelaaja*.
     * Pelaajat jatkavat peliä vuorotellen kunnes löytyy voittaja tai tyhjiä ruutuja ei ole enää jäljellä (jolloin tulee tasapeli). Voittoon tarvitaan *viisi* samaa merkkiä joko vaaka-, pysty- tai vinoriville. 
 * Pelin jälkeen
     * Voittajan nimi tulostetaan tai tasapelissä ilmoitetaan pelin päättyneen tasan. 
-    * Valitaan joko uusi peli tai poistutaan ohjelmasta
+    * Valitaan pelilaudalle ilmestyvistä napeista joko uusi peli tai palataan peliä edeltävään näkymään. Pelin voi sulkea näkymän oikean yläkulman ruksi-ikonista.
 
 ## Toimintaympäristön rajoitteet ja käyttöliittymä
 
