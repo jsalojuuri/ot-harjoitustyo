@@ -13,8 +13,7 @@ Pelissä on vain yksi käyttäjärooli: *pelaaja*.
 ### Ennen peliä
 
 * Valitaan pelaajat pelimerkeille x ja o 
-    * Joko luodaan uusi pelaaja tai valitaan listalta jo aikaisemmin luotu pelaaja. Peliin ei ainakaan toistaiseksi vaadita kirjautumista, joten listalta voi valita vapaasti minkä tahansa aiemmin luodun pelaajan
-    * Pelaajat listataan näkyville voittomäärän mukaan. Eniten voittoja kerännyt pelajaa on listan ensimmäisenä
+    * Joko luodaan uusi pelaaja tai valitaan jo aikaisemmin luotu pelaaja. Peliin ei ainakaan toistaiseksi vaadita kirjautumista, joten kuka tahansa voi valita vapaasti minkä tahansa aiemmin luodun pelaajan. Pelaajia voi myös halutessaan poistaa ohjelman pysyväistallennuksesta.
 
 * Määritetään pelilaudan sivun pituus ruuduissa. 
     * Pituudelle asetetaan minimi- ja maksimipituudet. Syöte tarkistetaan ja pyydetään tarvittaessa antamaan sallitun rajoissa oleva pituus.
@@ -26,9 +25,7 @@ Pelissä on vain yksi käyttäjärooli: *pelaaja*.
     * Pelaaja x aloittaa pelin valitsemalla pelilaudalta ruudun, johon asettaa x-merkin hiiren vasenta nappia painamalla
     * Pelaajat jatkavat peliä vuorotellen kunnes löytyy voittaja tai tyhjiä ruutuja ei ole enää jäljellä (jolloin tulee tasapeli). Voittoon tarvitaan *viisi* samaa merkkiä joko vaaka-, pysty- tai vinoriville. 
 * Pelin jälkeen
-    * Voittajan rivi merkataan selvästi erottuvaksi muusta pelilaudasta ja tulostetaan voittajan nimi
-    * Pelaajien tilastoihin lisätään tieto voitosta, häviöstä tai tasapelistä
-    * Top 10 pelaajien tilastot tulostetaan pelilaudan alle
+    * Voittajan nimi tulostetaan tai tasapelissä ilmoitetaan pelin päättyneen tasan. 
     * Valitaan joko uusi peli tai poistutaan ohjelmasta
 
 ## Toimintaympäristön rajoitteet ja käyttöliittymä
@@ -37,6 +34,7 @@ Pelissä on vain yksi käyttäjärooli: *pelaaja*.
 
 ## Jatkokehitysideoita
 
+* Tilastoidaan pelaajien voitot, tappiot ja tasapelit ja lisätään käyttöliittymään listaus näistä aina pelin jälkeen. Player-luokkaan on jo lisätty metodit tätä tukemaan, mutta aikatauluhaasteen vuoksi lopulliseen toteutukseen ei jäänyt enää aikaa.
 * Luodaan valmiiksi eritasoisia tekoälypelaajia, jolloin ihminen voi pelata konetta vastaan
 * Toiminnallisuus, jolla pelin voi keskeyttää ja palata siihen halutessaan myöhemmin aloitusvalikosta 
 * Pelaajalistauksen sivutus ja/tai hakutoiminnallisuus
