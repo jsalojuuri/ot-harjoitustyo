@@ -57,17 +57,6 @@ public class FilePlayerDao implements Dao<Player, Integer>  {
     }
     
     /**
-     * Updates player records
-     * @param player identifies player as unique. 
-     * @return updated player
-     * @throws SQLException 
-     */
-    @Override
-    public Player update(Player player) throws Exception {
-        return null;
-    }
-    
-    /**
      * Deletes player records
      * @param player identifies player as unique
      * @throws SQLException 

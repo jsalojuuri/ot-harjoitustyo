@@ -7,7 +7,6 @@ import java.util.Properties;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 import tictactoe.service.Player;
@@ -22,14 +21,17 @@ public class FilePlayerDaoTest {
     private String userTestFile;
     private Dao dao;
     private Player player;
+    private Player player2;
     
     @Before
     public void setUp() throws Exception {
         properties = new Properties();
         properties.load(new FileInputStream("config.properties"));
+        properties.setProperty("testPlayer", "userTestFile");
         userTestFile = properties.getProperty("userTestFile");
-        dao = new FilePlayerDao(userTestFile);
+        dao = new FilePlayerDao("testfile");
         player = new Player("Player");
+        player2 = new Player("Player2");
     }
     
     @Test
@@ -40,8 +42,10 @@ public class FilePlayerDaoTest {
     @Test
     public void createAndListAndDeletePlayersWorks() throws Exception {
         dao.create(player);
+        dao.create(player2);
         List<Player> players = dao.list();
         assertEquals("Player", players.get(0).getName());
+        dao.delete(player2);
         dao.delete(player);
         players = dao.list();
         assertEquals(true, players.isEmpty());
@@ -50,6 +54,7 @@ public class FilePlayerDaoTest {
     @After
     public void tearDown() throws Exception {
         dao.delete(player);
+        
     }
     
 }

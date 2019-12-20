@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- *
+ * Tests for GameState class
  * @author salojuur
  */
 public class GameStateTest {
@@ -62,5 +62,44 @@ public class GameStateTest {
         gameState.setGameSquare(3, 0, "O");
         gameState.setGameSquare(4, 0, "O");
         assertEquals("O", gameState.checkGameStatus());
+        gameState.setGameSquare(1, 0, "X");
+        gameState.setGameSquare(2, 1, "X");
+        gameState.setGameSquare(3, 2, "X");
+        gameState.setGameSquare(4, 3, "X");
+        gameState.setGameSquare(5, 4, "X");
+        assertEquals("X", gameState.checkGameStatus());
+        gameState.setGameSquare(5, 4, "O");
+        gameState.setGameSquare(4, 5, "O");
+        gameState.setGameSquare(3, 6, "O");
+        gameState.setGameSquare(2, 7, "O");
+        gameState.setGameSquare(1, 8, "O");
+        assertEquals("O", gameState.checkGameStatus());
     }
+    
+    @Test
+    public void gameEndsTiedIfMovesCountMaxReached() {
+        GameState gameState2 = new GameState(5);
+        int counter = 0;
+        while(counter < 25) {
+            gameState2.incrementMovesCount();
+            counter++;
+        }
+        assertEquals(25, gameState2.getMovesCount());
+        assertEquals("N", gameState2.checkGameStatus());
+    }
+    
+    @Test
+    public void wrongTypeOfCheckTypeReturnsFalseOrEmptyString() {
+        assertEquals(false,gameState.checkTypeOK("foo"));
+        assertEquals("",gameState.checkCurrent(0,0,"foo"));
+    }
+    
+    @Test
+    public void setNewGameBoardWorks() {
+        GameState gameState3 = new GameState(6);
+        String[][] newGameBoard = gameState3.getGameBoard();
+        gameState.setGameBoard(newGameBoard);
+        assertEquals(6,gameState.getGameBoard().length);
+    }
+    
 }

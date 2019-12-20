@@ -9,7 +9,6 @@ import java.util.*;
  */
 public interface Dao<T, K> {
     void create(T object) throws Exception;
-    T update(T object) throws Exception;
     void delete(T object) throws Exception;
     List<T> list() throws Exception;
 }

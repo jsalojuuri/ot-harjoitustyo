@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Contains methods initalize, manipulate and check game state
+ * Contains methods to initialise, manipulate and check game state
  * @author salojuur
  */
 public class GameState {
@@ -30,7 +30,7 @@ public class GameState {
         } 
     }
 
-        /**
+    /**
      * Checks game status
      * @return "N", if all moves are done and no winner is found (game is tie). Empty string "", if winner is not found and there are moves left. Else "X" or "O", if winner is found
      */
