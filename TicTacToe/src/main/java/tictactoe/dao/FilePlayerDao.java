@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tictactoe.dao;
 
 import java.io.File;
@@ -52,7 +47,7 @@ public class FilePlayerDao implements Dao<Player, Integer>  {
                 writer.write(p.getName() + "\n");
             }
         } catch (FileNotFoundException ex) {
-            System.out.println("File " + file + " not found, exception message: " +ex);
+            System.out.println("File " + file + " not found, exception message: " + ex);
         }
     }
     
@@ -75,7 +70,7 @@ public class FilePlayerDao implements Dao<Player, Integer>  {
                 writer.write(p.getName() + "\n");
             }
         } catch (FileNotFoundException ex) {
-            System.out.println("File " + file + " not found, exception message: " +ex);
+            System.out.println("File " + file + " not found, exception message: " + ex);
         }
     }
     

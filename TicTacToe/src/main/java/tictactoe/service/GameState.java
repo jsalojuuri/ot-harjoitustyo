@@ -74,10 +74,10 @@ public class GameState {
             for (int i = 0; i < gameBoard.length; i++) {
                 for (int j = 0; j < gameBoard[0].length; j++) {
                     previous = current;
-                    if (checkType.contains("diag") && i+j >= gameBoard.length) {
+                    if (checkType.contains("diag") && i + j >= gameBoard.length) {
                         continue;
                     } else {
-                        current = checkCurrent(i,j,checkType);
+                        current = checkCurrent(i, j, checkType);
                     }
                     if (!current.equals(previous)) {
                         count = 1;
@@ -123,12 +123,24 @@ public class GameState {
      */
     public String checkCurrent(int i, int j, String checkType) {      
         
-        if (checkType.equals("rows")) return gameBoard[j][i];      
-        if (checkType.equals("cols")) return gameBoard[i][j];
-        if (checkType.equals("diag1")) return gameBoard[i+j][j]; 
-        if (checkType.equals("diag2")) return gameBoard[j][j+i]; 
-        if (checkType.equals("diag3")) return gameBoard[gameBoard.length-(i+j+1)][j]; 
-        if (checkType.equals("diag4")) return gameBoard[j][gameBoard.length-(i+j+1)]; 
+        if (checkType.equals("rows")) { 
+            return gameBoard[j][i];
+        }      
+        if (checkType.equals("cols")) { 
+            return gameBoard[i][j];
+        }
+        if (checkType.equals("diag1")) { 
+            return gameBoard[i + j][j];
+        } 
+        if (checkType.equals("diag2")) { 
+            return gameBoard[j][j + i];
+        } 
+        if (checkType.equals("diag3")) { 
+            return gameBoard[gameBoard.length - (i + j + 1)][j];
+        } 
+        if (checkType.equals("diag4")) { 
+            return gameBoard[j][gameBoard.length - (i + j + 1)];
+        } 
         return "";  
     }
     
