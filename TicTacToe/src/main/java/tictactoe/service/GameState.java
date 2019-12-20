@@ -13,6 +13,7 @@ public class GameState {
     private String playerO;    
     private final int boardWidth;
     private boolean turnX;
+    private int movesCount;
     private String [][] gameBoard;
     
     public GameState(int boardWidth) {
@@ -20,6 +21,7 @@ public class GameState {
         this.playerO = "Player O";
         this.boardWidth = boardWidth;
         turnX = true;
+        movesCount = 0;
         gameBoard = new String[boardWidth][boardWidth];
         for (int i = 0; i < gameBoard.length; i++) {
             for (int j = 0; j < gameBoard[0].length; j++) {
@@ -28,65 +30,14 @@ public class GameState {
         } 
     }
 
-    public String getPlayerX() {
-        return playerX;
-    }
-
-    public void setPlayerX(String playerX) {
-        this.playerX = playerX;
-    }
-
-    public String getPlayerO() {
-        return playerO;
-    }
-
-    public void setPlayerO(String playerO) {
-        this.playerO = playerO;
-    }
-    
-    /**
-     * Checks if certain game square is played by player X
-     * @param i board row
-     * @param j board column
-     * @return true, is defined square is played by X.
-     */
-    public boolean isX(int i, int j) {
-        if (gameBoard[i][j].equals("X")) {
-            return true;
-        } else {
-            return false;
-        }  
-    }
-    
-    /** 
-     * Checks if it's player X's turn
-     * @return true, if player X's turn
-     */
-    public boolean isTurnX() {
-        return turnX;
-    }
-
-    public void setTurnX(boolean turnX) {
-        this.turnX = turnX;
-    }
-    
-    public String[][] getGameBoard() {
-        return gameBoard;
-    }
-    
-    public void setGameSquare(int i, int j, String str) {
-        this.gameBoard[i][j] = str;
-    }
-        
-    public void setGameBoard(String[][] gameBoard) {
-        this.gameBoard = gameBoard;
-    }
-    
-    /**
+        /**
      * Checks game status
-     * @return empty string, if winner is not found, else "X" or "O", if winner is found
+     * @return "N", if all moves are done and no winner is found (game is tie). Empty string "", if winner is not found and there are moves left. Else "X" or "O", if winner is found
      */
     public String checkGameStatus() {
+        if (movesCount == boardWidth * boardWidth) {
+            return "N";
+        }
         if (!check("cols").equals("")) {
             return check("cols");
         }
@@ -179,5 +130,67 @@ public class GameState {
         if (checkType.equals("diag3")) return gameBoard[gameBoard.length-(i+j+1)][j]; 
         if (checkType.equals("diag4")) return gameBoard[j][gameBoard.length-(i+j+1)]; 
         return "";  
+    }
+    
+    /**
+     * Checks if certain game square is played by player X
+     * @param i board row
+     * @param j board column
+     * @return true, is defined square is played by X.
+     */
+    public boolean isX(int i, int j) {
+        if (gameBoard[i][j].equals("X")) {
+            return true;
+        } else {
+            return false;
+        }  
+    }
+    
+    /** 
+     * Checks if it's player X's turn
+     * @return true, if player X's turn
+     */
+    public boolean isTurnX() {
+        return turnX;
+    }
+    
+    public String getPlayerX() {
+        return playerX;
+    }
+
+    public void setPlayerX(String playerX) {
+        this.playerX = playerX;
+    }
+
+    public String getPlayerO() {
+        return playerO;
+    }
+
+    public void setPlayerO(String playerO) {
+        this.playerO = playerO;
+    }
+    
+    public void setTurnX(boolean turnX) {
+        this.turnX = turnX;
+    }
+    
+    public String[][] getGameBoard() {
+        return gameBoard;
+    }
+    
+    public void setGameSquare(int i, int j, String str) {
+        this.gameBoard[i][j] = str;
+    }
+        
+    public void setGameBoard(String[][] gameBoard) {
+        this.gameBoard = gameBoard;
+    }
+
+    public int getMovesCount() {
+        return movesCount;
+    }
+
+    public void incrementMovesCount() {
+        this.movesCount++;
     }
 }

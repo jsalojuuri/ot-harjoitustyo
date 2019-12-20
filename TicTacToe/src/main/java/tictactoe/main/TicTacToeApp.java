@@ -350,6 +350,10 @@ public class TicTacToeApp extends Application {
             }
             gameBoard.setDisable(true);
             appScreen.setBottom(gameButtonPane);
+        } else if (gameService.checkStatus().equals("N")) {
+            gameLabel.setText("Game has ended in tie!");
+            gameBoard.setDisable(true);
+            appScreen.setBottom(gameButtonPane);
         } else {
             if (opponent.equals("X")) {
                 gameLabel.setText(gameService.getPlayerX() + ", please make your move ");

@@ -21,7 +21,8 @@ public class GameService {
       
     /**
     * Creates new player. Checks first if player with same name exists and if not, creates new player record
-    * @param   player   player name
+    * @param    playerName   player name
+    * @return   true, if new player is created. Else false.
     */   
     public boolean createPlayer(String playerName) {
         
@@ -39,6 +40,11 @@ public class GameService {
         return true;
     }
     
+    /**
+    * Deletes player. Checks first if player with same name exists and if not, notifies of an error, else deletes player record
+    * @param    playerName   player name
+    * @return   true, if player record is deleted, else false
+    */  
     public boolean deletePlayer(String playerName) {
         
         if (!playerExists(playerName)) {
@@ -59,11 +65,16 @@ public class GameService {
         
     }
     
+    /**
+    * Checks if player already exists
+    * @param   playerName   player name
+    * @return   true, if player already exists, else false
+    */  
     public boolean playerExists(String playerName) {
         
         List<Player> players = new ArrayList<>();
         
-        try {
+        try {      
             players = playerDao.list();
             for (Player p: players) {
                 if (p.getName().equals(playerName)) {
@@ -77,7 +88,7 @@ public class GameService {
     }
     
     /**
-    * Initalises gameboard
+    * Initialises gameboard
     * @param   width   game board width that will also be its height
     */  
     public void initGameBoard(int width) {        
@@ -106,14 +117,16 @@ public class GameService {
     public void changeTurn() {
         if (gameState.isTurnX()) {
             gameState.setTurnX(false);
+            gameState.incrementMovesCount();
         } else {
             gameState.setTurnX(true);
+            gameState.incrementMovesCount();
         }
     }
     
     /**
      * Checks if winner is found after every move
-     * @return empty string, if winner not found. X/O, if either one has won the game
+     * @return empty string, if winner not found and game is still on. If game has ended, N if it was a tie, X/O, if either one has won the game
      */
     public String checkStatus() {
         return gameState.checkGameStatus();
