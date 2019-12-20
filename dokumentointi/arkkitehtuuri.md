@@ -59,9 +59,19 @@ Luokat noudattavat Data Access Object -suunnittelumallia ja voidaan tarvittaessa
 
 ## Tiedostot
 
-Sovellus tallentaa käyttäjien tiedot omaan tiedostoonsa. Sovelluksen juureen sijoitettu config.properties konfigurointitiedosto määrittelee tiedostojen nimet.
+Sovellus tallentaa pelaajien tiedot omaan tiedostoonsa. Sovelluksen juureen sijoitettu config.properties konfigurointitiedosto määrittelee tiedostojen nimet.
+
+Pelaajista tallennetaan toistaiseksi vain nimi ja eri pelaajat erotellaan omille riveilleen.
 
 
 ## Päätoiminnallisuudet
 
 (tulossa myöhemmin)
+
+## Ohjelman rakenteeseen jääneet heikkoudet
+
+* Ohjelman käyttöliittymän eri näkymät on nyt toteutettu kaikki samaan metodiin start. Nämä olisi ehdottomasti eroteltava omiksi metodeikseen tai jopa omiksi luokikseen, jotka voisivat muodostaa myös oman pakettinsa. Koodin tarkastelu ja muokkaaminen käyttöliittymän osalta on nyt melko hankalaa.
+
+* Dao-toteutusten FileNotFoundException haarat ovat jääneet nyt testaamatta automaattisilla testeillä. Jonkinlaisen Mock-ympäristön käyttäminen JUnit-teteissä voisi olla paikallaan.
+
+* JavaFX:n toiminnallisuuteen tutustuminen jäi liian pintapuoliseksi, jonka vuoksi käyttöliittymä jäi melko karun oloiseksi. Lisäksi en ehtinyt selvittämään mistä esim. seuraava kummallisuus johtuu: Ilmeisesti käyttöliittymän logiikasta johtuen jos pelissä aloittaa uuden pelin toisen perään ja pelaa sen loppuun, ilmestyy peliaudalle edellisen pelin lopputilanne käynnissä olevan pelin alle. Käyttöliittymien kaikkien näkymien koodin sijainti samassa metodissa ei ainakaan helpottanut hahmottamaan mistä tämä voisi johtua.
