@@ -66,7 +66,7 @@ Pelaajista tallennetaan toistaiseksi vain nimi ja eri pelaajat erotellaan omille
 
 ## Päätoiminnallisuudet
 
-Käyn seuraavaksi sekvenssikaavioiden avulla läpi muutaman sovelluksen päätoiminnallisuuden. 
+Käyn seuraavaksi tarkemmin läpi mitä ohjelmassa tapahtuu, kun uusi peli käynnistetään ja pelilaudan nappeja painetaan.
 
 ### Uuden pelin käynnistys
 
@@ -75,6 +75,19 @@ Käyttäjän painaessa pre-game valikossa nappia *Start new game* etenee sovellu
 ![Uuden pelin käynnistys](./assets/sequence_startNewGame.png)
 
 Käyttöliittymän tapahtumankäsittelijä kutsuu ensin omaa metodiaan setGameBoard parametrilla gameService.getGameBoard(), joka käynnistää kutsun GameService luokan metodille getGameBoard(). GameService palauttaa setGameBoard() metodille  jo aikaisemmin alustetun pelilaudan, jonka jälkeen setGameBoard() jatkaa lisäämällä aikaisemmin alustettuun käyttöliittymän GridPane olioon gameBoard tyhjät pelinappulat. Tämän jälkeen kutsutaan GameService luokan metodia setPlayerX() parametrilla, joka sisältää esimääritetyn tai käyttäjän asettaman pelaajan nimen. GameService kutsuu heti tämän jälkeen GameState luokan metodia setPlayerX parametrinaan sama pelaajan nimi, jonka jälkeen GameState asettaa String-tyyppisen luokkamuutujansa playerX arvoksi annetun pelaajan nimen. Sama toistetaan pelaajan O osalta. Lopuksi käyttöliittymän tapahtumakäsittelijä asettaa päänäkymäksi pelinäkymän ja palauttaa kontrollin käyttäjälle.
+
+Todellisuudessa taustalla tapahtuu vielä paljon enemmänkin, sillä setGameBoard metodin kutsuminen käynnistää nappien luonnin lisäksi nappien tilan tarkistamisen, mikä taas johtaa pelitilanteen tarkistamiseen jne. Kaiken tämän kuvaaminen sekvenssikaaviolla menee kuitenkin turhan monimutkaiseksi, mutta käyn kuitenkin seuravassa tarkemmin läpi mitä tapahtuu, kun pelilaudalla vuorossa oleva pelaaja painaa nappia.
+
+### Pelilaudan napin painallus
+
+Peli alkaa aina pelaajan X vuorolla. Kun pelaaja X painaa jotain laudan nappia, ilmestyy klikattuun ruutuun merkki X. Matkan varrella tapahtuu seuraavaa:
+
+Pelilaudan nappulan painallus aktivoi käyttöliittymän metodin setStateFor(Button button, int i, int j), joka puolestaan aktivoi pelilaudan napin tapahtumankäsittelijän. Tapahtumankäsittelijä palauttaa annetun napin takaisin, mikäli se ei ole tyhjä (napille ei siis tehdä mitään, sillä jo pelattua ruutua ei voi muuttaa). Jos nappi on tyhjä (sitä ei ole vielä painettu pelin aikana), tarkistaa tapahtumankäsittelijä ensin GameService luokan metodin isTurnX() avulla onko kyseessä pelaajan X vuoro. Metodi palauttaa käyttöliittymälle boolean arvon, jonka perusteella käyttöliittymä valitsee joko pelaajaa X tai pelaajaa O käsittelevän if-haaran. Molemmissa tapauksissa tehdään seuraavat neljä asiaa:
+1. Metodille parametrina annetun Button-olion tekstiksi asetetaan vuorossa olevan pelaajan merkki. 
+2. Käyttöliittymä kutsuu GameService luokan metodia setGameSquare() ja annetaan parametreiksi napin koordinaatit ja pelaajan merkki (X tai O). Tämä aktivoi kutsun GameState luokan metodille setGameSquare samoilla parametreilla. Lopulta GameState asettaa oman luokkamuuttujansa gameBoard[i][j] arvoksi annetun pelaajan merkin. 
+3. Käyttöliittymä kutsuu GameService luokan metodia changeTurn(). Kyseinen metodi aktivoi GameState luokan metodin isTurnX kutsun, jolla tarkistetaan onko vuoro pelaajalla X vai O. Metodi changeTurn haarautuu nyt joko pelaajan X tai O haaraan. Molemmissa haaroissa kutsutaan ensin GameState luokan metodia setTurnX() ja annetaan parametriksi true tai false pelaajasta riippuen. Tämän jälkeen kutsutaan GameState luokan metodia incrementMovesCount(), joka kasvattaa GameState luokan MovesCount instanssimuuttujaa yhdellä. MoveCount arvoa tarvitaan, jotta tiedetään myöhemmin onko pelilaudan kaikki ruudut pelattu, jolloin tuloksena on tasapeli.
+4. Käyttöliittymä kutsuu omaa metodiaan checkStatus, jonka parametreina on X ja O, jos pelivuorossa on pelaaja X. Pelaajan O ollessa vuorossa parametrit annetaan päinvastaisessa järjestyksessä. checkStatus metodi kutsuu ensimmäiseksi GameService luokan metodia checkStatus, mikä puolestaan käynnistää kutsun GameState luokan metodille checkGameStatus. checkGameStatus käynnistää lukuisia eri tarkastustyyppien alitarkistuksia GameStaten check() metodille, joka palauttaa tyhjän merkkijonon, jos tarkistus ei löytänyt pelille voittajaa ja toisaalta pelin voittajan (X tai O) merkkijonon, jos tarkistus löysi voittajan. Lopuksi tarkistetaan vielä onko kaikki pelilaudan ruudut pelattu ja jos on, niin palautetaan merkkijono N. Tieto tarkastuksen tuloksesta kulkeutuu GameService luokan kautta käyttöliittymälle, joka saamansa arvon perusteella vaihtaa pelilaudan yläreunan tekstiä tilanteen mukaan. Jos pelillä on voittaja tai on tullut tasapeli, käyttöliittymän gameBoard olio asetetaan disable-moodiin ja pelilaudan alareunaan asetataan näkyviin gameButtonPane olion sisältämät napit (*New game* ja *Start menu*)   
+
 
 ## Ohjelman rakenteeseen jääneet heikkoudet
 
